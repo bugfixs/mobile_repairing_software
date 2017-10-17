@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   rolify
   resourcify
-  belongs_to :general_setting
+  # belongs_to :general_setting
   scope :shod, ->(id) { where(id: id).take }
   scope :role_wise_users, ->(role) { where(role: role) }
   # Include default devise modules. Others available are:
