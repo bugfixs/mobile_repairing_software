@@ -1,0 +1,113 @@
+<div class="row">
+   <div class="col-md-2"></div>
+   <div class="box col-md-6">
+        <%= form_for @employee do |e|%>
+          <% if employee.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+             <ul>
+              <% employee.errors.full_messages.each do |message| %>
+               <li><%= message %></li>
+              <% end %>
+             </ul>
+            </div>
+          <% end %>
+
+          <div class="errors"><ul class="errors"></ul></div>
+          <fieldset>
+          <table style="width:100%;text-align:center;border-collapse:collapse;background-color:gold;">
+            <tr style="background-color:#2767D9;color:white;">
+             <th style="text-align: center;">Employees Detail</th>
+            </tr>
+          </table>
+          <br><br>
+
+          <div class="form-group">
+            <div class="col-md-3"><b>Employee Number</b></div>
+              <%=e.text_field :employee_number,:value=> @employee.employee_number, readonly: true, placeholder: "Employee Number", class: "form-control",style:"width:250px"%>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-md-3"><b>Select Employee Types</b></div>
+              <%=e.select :employee_type_id,EmployeeType.all.collect{|b| [b.name, b.id] },{prompt:true},class: "form-control",style:"width:250px"%>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3"><b>First Name</b></div>
+              <%=e.text_field :first_name,placeholder: " First Name", class: "form-control",style:"width:250px"%>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3"><b>Middle Name</b></div>
+              <%=e.text_field :middle_name, placeholder: " Middle Name", class: "form-control",style:"width:250px"%>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3"><b>Last Name</b></div>
+              <%=e.text_field :last_name, placeholder: " Last Name", class: "form-control",style:"width:250px"%>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3"><b>Email</b></div>
+              <%=e.text_field :email, placeholder: "Email Address", class: "form-control",style:"width:250px"%>
+          </div>
+
+           <div class="form-group">
+            <div class="col-md-3"><b>Contact No.</b></div>
+              <%=e.text_field :mobile_no, placeholder: "Contact No", class: "form-control",style:"width:250px"%>
+          </div>
+            
+            <div class="col-sm-4 col-sm-offset-4"> 
+              <div class="form-actions">               
+                <%= e.submit 'Create', class: "btn btn-primary"%>
+              </div>
+            </div>
+          </fieldset>
+        <%end%>  
+   </div>
+  </div>   
+
+<div class="row">
+ <div class="col-md-3"></div>
+  <div class="box col-md-12">
+    <div class="box-inner">
+      <div class="box-header well">
+        <h2>View All Employees</h2>
+      </div>
+ <div class="box-content">
+  <table id="datatable" class="table table-striped table-bordered responsive">
+   <thead>
+    <tr>
+    <th>Employee number</th>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Mobile no</th>
+      <th>Employee type</th>
+      <th>Actions</th>
+    </tr>
+   </thead>
+
+    <tbody>
+     <%@employees.each_with_index do |employee,i| %>
+       <tr class="tr-<%= cycle('odd', 'even') %>">
+       <td><%= employee.employee_number %></td>
+        <td><%= employee.first_name %></td>
+        <td><%= employee.middle_name %></td>
+        <td><%= employee.last_name %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.mobile_no %></td>
+        <td><%= employee.employee_type.name %></td>
+        <td><%= link_to 'Show', employee %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+     <%end%>
+    </tbody>
+  </table>
+  </div>
+ </div>
+ </div>
+</div>

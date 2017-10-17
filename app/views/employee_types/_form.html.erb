@@ -1,0 +1,83 @@
+<div>
+  <ul class="breadcrumb">
+    <li><%= link_to 'Home'%></li>
+    <li><%= link_to 'Employee '%></li>
+    <li>Employee Types</li>
+  </ul>
+</div>
+
+  <div class="row">
+   <div class="col-md-3"></div>
+   <div class="box col-md-6">
+        <%= form_for @employee_type do |e|%>
+          <% if employee_type.errors.any? %>
+            <div id="error_explanation">
+             <h2><%= pluralize(employee_type.errors.count, "error") %> prohibited this employee_type from being saved:</h2>
+
+             <ul>
+               <% employee_type.errors.full_messages.each do |message| %>
+                 <li><%= message %></li>
+               <% end %>
+             </ul>
+            </div>
+          <% end %>
+          
+        <div class="errors"><ul class="errors"></ul></div>
+          <fieldset>
+          <table style="width:100%;text-align:center;border-collapse:collapse;background-color:gold;">
+            <tr style="background-color:#2767D9;color:white;">
+             <th style="text-align: center;">Invoice Details</th>
+            </tr>
+          </table>
+          <br><br>
+            <div class="form-group">
+              <div class="col-md-3"><b>Employee Type</b></div>
+              <%=e.text_field :name, placeholder: "Name", class: "form-control",style:"width:250px"%>
+            </div>
+   
+            <div class="col-sm-4 col-sm-offset-4"> 
+              <div class="form-actions">               
+                <%= e.submit 'Create', class: "btn btn-primary"%>
+              </div>
+            </div>
+          </fieldset>
+        <%end%>  
+   </div>
+  </div>   
+
+<div class="row">
+ <div class="col-md-3"></div>
+  <div class="box col-md-6">
+    <div class="box-inner">
+      <div class="box-header well">
+        <h2>Employee Types</h2>
+      </div>
+ <div class="box-content">
+  <table class="table table-striped table-bordered responsive">
+   <thead>
+    <tr>
+     <th>Sr.No.</th>
+     <th>Name</th>
+     <th>Actions</th>
+    </tr>
+   </thead>
+
+    <tbody>
+     <%@employee_types.each_with_index do |e,i| %>
+       <tr class="tr-<%= cycle('odd', 'even') %>">
+       <td align="center"><%= i+1 %>
+       <td><%= e.name%></td>
+
+       <td><div class="label-success label label-default">
+         <i class="glyphicon glyphicon-pencil icon-white"></i> <%= link_to 'Edit',edit_employee_type_path(e),class: "a-action"%></td>
+  
+        <td><div class="label-danger label label-default">
+         <i class="glyphicon glyphicon-trash icon-white"></i> <%= link_to 'Delete',employee_type_path(e),method: :delete, data: { confirm: "Are you sure to delete ?" },class: "a-action"%></td>
+      </tr>
+     <%end%>
+    </tbody>
+  </table>
+  </div>
+ </div>
+ </div>
+</div>
