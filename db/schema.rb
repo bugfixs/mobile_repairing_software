@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017131520) do
+ActiveRecord::Schema.define(version: 20171018124709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employee_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "contact"
+    t.string "email"
+    t.string "address"
+    t.bigint "employee_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_type_id"], name: "index_employees_on_employee_type_id"
+  end
 
   create_table "general_settings", force: :cascade do |t|
     t.string "name"
@@ -63,5 +82,6 @@ ActiveRecord::Schema.define(version: 20171017131520) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "employees", "employee_types"
   add_foreign_key "users", "general_settings"
 end

@@ -1,0 +1,23 @@
+<h3>Employees Type Details</h3>
+ <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                         <th>Action</th>
+                                        <th colspan="5"></th>
+                                    </tr>
+                                 </thead>
+
+                                  <tbody>
+                                    <% @employee_types.each do |employee_type| %>
+                                        <tr>
+                                          <td><%= employee_type.name %></td>
+                                          <td><%= link_to 'Show', employee_type, class: "btn btn-success btn-sm" %></td>
+                                          <td><%= link_to 'Edit', edit_employee_type_path(employee_type), class: "btn btn-danger btn-sm" %></td>
+                                          <td><%= link_to 'Destroy', employee_type, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-warning btn-sm" %></td>
+                                        </tr>
+                                    <% end %>
+                                 </tbody>
+</table>
+
+<%= link_to "Add New Employee Type",new_employee_type_path%>

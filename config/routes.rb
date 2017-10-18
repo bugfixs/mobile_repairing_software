@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :employees
+  resources :employee_types
   resources :general_settings
   resources :home do
   	collection do

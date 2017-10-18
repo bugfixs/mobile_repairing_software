@@ -1,0 +1,40 @@
+<div class="col-md-12 section-top-5 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Employee Detail
+        </div>
+<p id="notice"><%= notice %></p>
+
+<div class="panel-body">
+              <div class="row form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+             
+  <strong>First name:</strong>
+  <%= @employee.first_name %><br>
+
+  <strong>Middle name:</strong>
+  <%= @employee.middle_name %><br>
+
+  <strong>Last name:</strong>
+  <%= @employee.last_name %><br>
+
+  <strong>Contact:</strong>
+  <%= @employee.contact %><br>
+
+  <strong>Email:</strong>
+  <%= @employee.email %><br>
+
+               
+  <strong>Address:</strong>
+  <%= @employee.address %><br>
+
+                  
+  <strong>Employee type:</strong>
+  <%= @employee.employee_type.name %><br>
+</div>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>
+</div>
+</div></div></div>
