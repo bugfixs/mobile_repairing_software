@@ -18,6 +18,11 @@
 
           <div class="panel-body">
               <div class="row form-group">
+              <div class="col-md-4">
+                        <label for="text_input" class="label_height">Employee Number</label>
+                             <span style="color:red">*</span>
+              <%=form.text_field :employee_number,readonly: true,:value=> @employee.employee_number, class: "form-control"%>
+              </div>
                     <div class="col-md-4">
                         <label for="text_input" class="label_height">First Name</label>
                              <span style="color:red">*</span>

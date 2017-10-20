@@ -1,10 +1,15 @@
+ <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+       <div class="panel panel-primary">
+            <div class="panel-heading">Employee Details
+        </div>
+ <div class="panel-body">
 <p id="notice"><%= notice %></p>
-
-<h3>Employees Details</h3>
-
+<%= link_to 'New Employee', new_employee_path %>
 <table class="table table-bordered">
   <thead>
     <tr>
+     <th>Employee Number</th>
       <th>First name</th>
       <th>Middle name</th>
       <th>Last name</th>
@@ -19,6 +24,7 @@
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
+      <td><%= employee.employee_number%></td>
         <td><%= employee.first_name %></td>
         <td><%= employee.middle_name %></td>
         <td><%= employee.last_name %></td>
@@ -36,4 +42,5 @@
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+
+</div></div></div>
