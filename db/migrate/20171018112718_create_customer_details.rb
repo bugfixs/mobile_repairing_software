@@ -1,6 +1,7 @@
 class CreateCustomerDetails < ActiveRecord::Migration[5.1]
   def change
     create_table :customer_details do |t|
+      t.string :bill_no
       t.string :customer_name
       t.date :date
       t.string :address

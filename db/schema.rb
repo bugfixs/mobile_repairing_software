@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20171020112547) do
   enable_extension "plpgsql"
 
   create_table "customer_details", force: :cascade do |t|
+    t.string "bill_no"
     t.string "customer_name"
     t.date "date"
     t.string "address"

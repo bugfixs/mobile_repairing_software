@@ -10,6 +10,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>Bill No</th>
                     <th>Customer name</th>
                     <th>Date</th>
                     <th>Address</th>
@@ -30,6 +31,7 @@
                 <tbody>
                   <% @customer_details.each do |customer_detail| %>
                     <tr>
+                      <td><%= customer_detail.bill_no %></td>
                       <td><%= customer_detail.customer_name %></td>
                       <td><%= customer_detail.date %></td>
                       <td><%= customer_detail.address %></td>
