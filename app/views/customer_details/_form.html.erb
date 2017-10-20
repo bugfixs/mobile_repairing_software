@@ -1,9 +1,19 @@
 <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
         <div class="panel panel-primary">
-            <div class="panel-heading">Customer Complaints
+            <div class="panel-heading">Fill Up Customer Complaints
         </div>
-                <%= form_with(model: customer_detail, local: true) do |f| %>
+            <%= form_with(model: customer_detail, local: true) do |f| %>
+              <% if customer_detail.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(customer_detail.errors.count, "error") %> prohibited this customer_detail from being saved:</h2>
+                <ul>
+                  <% customer_detail.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+                </div>
+              <% end %>
                     <div class="panel-body">
                         <div class="row form-group">
                             <div class="col-md-2">
@@ -45,8 +55,7 @@
                         
                             <div class="col-md-2">
                                 <label for="text_input" class="label_height">Model Name</label>
-                                    <span style="color:red">*</span>
-                                    <%= f.text_field :model_name, placeholder: "odel Name", class: "form-control" %>
+                                    <%= f.text_field :mobile_modal_name, placeholder: "Model Name", class: "form-control" %>
                             </div>
 
                             <div class="col-md-2">
@@ -74,7 +83,6 @@
 
                             <div class="col-md-2">
                                 <label for="text_input" class="label_height">Good Delivered</label>
-                                     <span style="color:red">*</span>
                                         <%= f.text_field :good_delivered, placeholder: "Good Delivered", class: "form-control"%>
                            </div>
 
@@ -145,6 +153,7 @@
 
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">Symptom Code</label>
+                                <span style="color:red">*</span>
                                         <%= f.text_field :symptom_code, placeholder: "Symptom Code", class: "form-control"%>
                            </div>
 

@@ -7,7 +7,7 @@ class CreateCustomerDetails < ActiveRecord::Migration[5.1]
       t.string :customer_no
       t.string :telephone_no
       t.string :mobile_no
-      t.string :model_name
+      t.string :mobile_modal_name
       t.date :purchase_date
       t.string :serial_no
       t.string :full_warranty

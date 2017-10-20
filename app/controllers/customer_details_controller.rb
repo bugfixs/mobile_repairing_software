@@ -29,7 +29,7 @@ class CustomerDetailsController < ApplicationController
     respond_to do |format|
       if @customer_detail.save
         format.html { redirect_to customer_details_path, notice: 'Customer detail was successfully created.' }
-        format.json { render :new, status: :created, location: @customer_detail }
+        format.json { render :new, status: :created }
       else
         format.html { render :new }
         format.json { render json: @customer_detail.errors, status: :unprocessable_entity }

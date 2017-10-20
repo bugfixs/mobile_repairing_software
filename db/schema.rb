@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018142211) do
+ActiveRecord::Schema.define(version: 20171020112547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171018142211) do
     t.string "customer_no"
     t.string "telephone_no"
     t.string "mobile_no"
-    t.string "model_name"
+    t.string "mobile_modal_name"
     t.date "purchase_date"
     t.string "serial_no"
     t.string "full_warranty"
@@ -64,6 +64,39 @@ ActiveRecord::Schema.define(version: 20171018142211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_type_id"], name: "index_employees_on_employee_type_id"
+  end
+
+  create_table "enginner_copies", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.string "customer_name"
+    t.date "date"
+    t.string "address"
+    t.string "customer_no"
+    t.string "telephone_no"
+    t.string "mobile_no"
+    t.string "model_name"
+    t.date "purchase_date"
+    t.string "serial_no"
+    t.string "full_warranty"
+    t.string "labor_only"
+    t.string "parts_only"
+    t.string "out_of_warranty"
+    t.string "repair_received"
+    t.string "repair_completed"
+    t.string "good_delivered"
+    t.date "return_by_date"
+    t.string "defect_description"
+    t.string "b2b_svc"
+    t.string "accessory"
+    t.string "remark"
+    t.string "repair_description"
+    t.string "condition_code"
+    t.string "symptom_code"
+    t.string "defect_code"
+    t.string "repair_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_enginner_copies_on_employee_id"
   end
 
   create_table "general_settings", force: :cascade do |t|
@@ -116,4 +149,5 @@ ActiveRecord::Schema.define(version: 20171018142211) do
   end
 
   add_foreign_key "employees", "employee_types"
+  add_foreign_key "enginner_copies", "employees"
 end
