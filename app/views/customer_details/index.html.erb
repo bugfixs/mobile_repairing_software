@@ -1,0 +1,60 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+       <div class="panel panel-primary">
+            <div class="panel-heading">View All Customers Complaints Details
+        </div>
+            <div class="panel-body">
+             <p id="notice"><%= notice %></p>
+             <%= link_to 'New Complaint', new_customer_detail_path %>
+       
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Customer name</th>
+                    <th>Date</th>
+                    <th>Address</th>
+                    <th>Customer no</th>
+                    <th>Mobile no</th>
+                    <th>Model name</th>
+                    <th>Accessory</th>
+                    <th>Remark</th>
+                    <th>Repair description</th>
+                    <th>Condition code</th>
+                    <th>Symptom code</th>
+                    <th>Defect code</th>
+                    <th>Repair code</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <% @customer_details.each do |customer_detail| %>
+                    <tr>
+                      <td><%= customer_detail.customer_name %></td>
+                      <td><%= customer_detail.date %></td>
+                      <td><%= customer_detail.address %></td>
+                      <td><%= customer_detail.customer_no %></td>
+                      <td><%= customer_detail.mobile_no %></td>
+                      <td><%= customer_detail.model_name %></td>
+                      <td><%= customer_detail.accessory %></td>
+                      <td><%= customer_detail.remark %></td>
+                      <td><%= customer_detail.repair_description %></td>
+                      <td><%= customer_detail.condition_code %></td>
+                      <td><%= customer_detail.symptom_code %></td>
+                      <td><%= customer_detail.defect_code %></td>
+                      <td><%= customer_detail.repair_code %></td>
+                      <td><%= link_to 'Show', customer_detail,class: "btn btn-warning btn-sm" %></td>
+                      <td><%= link_to 'Edit', edit_customer_detail_path(customer_detail),class: "btn btn-success btn-sm" %></td>
+                      <td><%= link_to 'Destroy', customer_detail, method: :delete, data: { confirm: 'Are you sure you want to delete?' },class: "btn btn-danger btn-sm"  %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+                  
+           
+
+
+
+

@@ -10,10 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017131520) do
+ActiveRecord::Schema.define(version: 20171018142211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customer_details", force: :cascade do |t|
+    t.string "customer_name"
+    t.date "date"
+    t.string "address"
+    t.string "customer_no"
+    t.string "telephone_no"
+    t.string "mobile_no"
+    t.string "model_name"
+    t.date "purchase_date"
+    t.string "serial_no"
+    t.string "full_warranty"
+    t.string "labor_only"
+    t.string "parts_only"
+    t.string "out_of_warranty"
+    t.string "repair_received"
+    t.string "repair_completed"
+    t.string "good_delivered"
+    t.date "return_by_date"
+    t.string "defect_description"
+    t.string "b2b_svc"
+    t.string "accessory"
+    t.string "remark"
+    t.string "repair_description"
+    t.string "condition_code"
+    t.string "symptom_code"
+    t.string "defect_code"
+    t.string "repair_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "contact"
+    t.string "email"
+    t.string "address"
+    t.string "employee_number"
+    t.bigint "employee_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_type_id"], name: "index_employees_on_employee_type_id"
+  end
 
   create_table "general_settings", force: :cascade do |t|
     t.string "name"
@@ -39,6 +90,8 @@ ActiveRecord::Schema.define(version: 20171017131520) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "role"
+    t.integer "employee_id"
+    t.bigint "general_setting_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -49,7 +102,6 @@ ActiveRecord::Schema.define(version: 20171017131520) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "general_setting_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["general_setting_id"], name: "index_users_on_general_setting_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -63,5 +115,5 @@ ActiveRecord::Schema.define(version: 20171017131520) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "users", "general_settings"
+  add_foreign_key "employees", "employee_types"
 end

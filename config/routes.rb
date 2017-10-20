@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :customer_details
   resources :general_settings
   resources :home do
   	collection do
