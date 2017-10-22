@@ -27,8 +27,8 @@ class User < ApplicationRecord
     end
   end
 
-  # get institute name
-  def institute_name
+  # get company name
+  def company_name
     general_setting.name
   end
 
