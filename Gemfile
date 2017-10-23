@@ -7,6 +7,7 @@ end
 
 #Devise for User Authentication
 gem 'devise'
+gem 'responders', '~> 2.3'
 gem 'cancancan'
 gem 'rolify'
 gem 'font-awesome-sass', '~> 4.7.0'
@@ -16,6 +17,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'glyphicons-rails', '~> 0.1.2'
 gem 'bootstrap-datepicker-rails'
+gem 'html5_validators'
 gem 'roo-xls'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'

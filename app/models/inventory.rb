@@ -3,6 +3,7 @@ class Inventory < ApplicationRecord
   scope :shod, ->(id) { where(id: id).take }
 
 
+
   def self.search(search)
   where("description LIKE ? OR branch LIKE ? OR map LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
 end

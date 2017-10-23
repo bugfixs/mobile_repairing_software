@@ -1,10 +1,10 @@
-<div class="row">
-  <div class="box col-md-12">
-  <div class="box-inner">
-    <div class="box-header well">
-    
-    </div>
 
+ <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+       <div class="panel panel-primary">
+            <div class="panel-heading">Inventory Details
+        </div>
+ <div class="panel-body">
     <div class="box-content" style="overflow-y: scroll; height:auto">
       <table id="datatable" class="table table-striped table-bordered responsive">
         <thead>
@@ -18,7 +18,7 @@
         <%  @inventories.each do |inventories|  %>
           <tr>
             <td>
-              <%= inventories.descrition %>
+              <%= inventories.description %>
             </td>
             <td class="center">
               <%= check_box_tag "inventories[]", inventories.id,false,class: 'check_box'%>Assign
