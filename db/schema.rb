@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018142211) do
+ActiveRecord::Schema.define(version: 20171022062204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customer_details", force: :cascade do |t|
+    t.string "customer_name"
+    t.date "date"
+    t.string "address"
+    t.string "customer_no"
+    t.string "telephone_no"
+    t.string "mobile_no"
+    t.string "model_name"
+    t.date "purchase_date"
+    t.string "serial_no"
+    t.string "full_warranty"
+    t.string "labor_only"
+    t.string "parts_only"
+    t.string "out_of_warranty"
+    t.string "repair_received"
+    t.string "repair_completed"
+    t.string "good_delivered"
+    t.date "return_by_date"
+    t.string "defect_description"
+    t.string "b2b_svc"
+    t.string "accessory"
+    t.string "remark"
+    t.string "repair_description"
+    t.string "condition_code"
+    t.string "symptom_code"
+    t.string "defect_code"
+    t.string "repair_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "employee_types", force: :cascade do |t|
     t.string "name"
@@ -40,6 +71,33 @@ ActiveRecord::Schema.define(version: 20171018142211) do
     t.string "address"
     t.string "contact"
     t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "branch"
+    t.string "part_no"
+    t.text "description"
+    t.string "total_stock_qty"
+    t.string "warehouse_stock_qty"
+    t.string "engineer_stock_qty"
+    t.string "location1"
+    t.string "location2"
+    t.string "location3"
+    t.string "map"
+    t.string "total_stock_value"
+    t.string "status"
+    t.date "latest_modify_date"
+    t.text "remark"
+    t.bigint "inventory_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_type_id"], name: "index_inventories_on_inventory_type_id"
+  end
+
+  create_table "inventory_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,4 +143,5 @@ ActiveRecord::Schema.define(version: 20171018142211) do
   end
 
   add_foreign_key "employees", "employee_types"
+  add_foreign_key "inventories", "inventory_types"
 end

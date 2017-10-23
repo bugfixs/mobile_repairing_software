@@ -1,0 +1,17 @@
+<div>
+  <ul class="breadcrumb">
+    <li><%= link_to 'Home',dashboard_home_index_path %></li>
+  </ul>
+
+<br/><br/>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for :inventory_transfer,url:{action:'select',controller:'inventory_transfers'}, 'data-type' => 'json',method: :get,remote:true,html:{id: "transfer"} do |f| %>
+  <b>Select a Inventory Type:</b>
+    <%= f.select :id,InventoryType.all.collect{|i| [i.name,i.id]},{prompt:'Select a InventoryType'},{onchange:"inventory_transfer_fun()",class: "form-control",style: "width:350px"}%>
+    <% end %>
+  </div>
+</div>
+
+<div id="stage"></div>

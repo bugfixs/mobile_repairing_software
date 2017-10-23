@@ -10,11 +10,13 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'font-awesome-sass', '~> 4.7.0'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
+gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'jquery-ui-rails'
+gem 'jquery-rails'
 gem 'glyphicons-rails', '~> 0.1.2'
+gem 'bootstrap-datepicker-rails'
+gem 'roo-xls'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
@@ -34,6 +36,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-validation-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

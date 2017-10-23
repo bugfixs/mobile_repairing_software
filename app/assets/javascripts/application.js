@@ -16,3 +16,17 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+function inventory_transfer_fun(){
+  $('#transfer').submit();
+}
+
+$('#inventory_transfer').on('change', function(){
+  $.ajax({ type: "GET",
+     url: "/inventory_types",
+     data: { sort: $('option:selected', this).val() }
+  }).done(function(data) {
+    console.log(data);
+  });
+});
+
+
