@@ -22,12 +22,15 @@
 </div>   
 
 <div class="row" align="right" style="margin-right:20px">
-  <%= link_to "Assign All",assign_all_inventory_transfers_path(@inventory_type),remote:true, class: 'btn btn-primary-link btn-xs'%>
-  <%= link_to "Remove All",remove_all_inventory_transfers_path(@inventory_type),remote:true, class: 'btn btn-primary-link btn-xs' %>
+  <%= link_to "All",'#',{onclick:"$('.check_box').prop('checked',true);",remote:true,class: "btn btn-primary-link "}%>
+
+           <%= link_to  "None",'#',{onclick:"$('.check_box').prop('checked',false);",remote:true,class: "btn btn-primary-link "}%>
 </div>
+
 <div id="inventory_list">
     <%= render 'inventory_list' %>
 </div>
+
 <div class="row">
   <div class="col-md-5"></div>
   <div class="col-md-5">
@@ -37,4 +40,3 @@
 <% end %>
 
 </div></div>
- 

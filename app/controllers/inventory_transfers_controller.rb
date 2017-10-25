@@ -5,13 +5,15 @@ class InventoryTransfersController < ApplicationController
   def index
     @inventories ||= Inventory.all
     @inventory = Inventory.new
+    @inventory_types = InventoryType.all
   end
 
   # find inventory_type which we selected,
   # and perform authorization
   def select
-    @inventory_type = InventoryType.shod(params[:inventory_transfer][:id])
-    @inventory_types = InventoryType.all
+     @inventory_type = InventoryType.shod(params[:inventory_type_id])
+     @inventory_types = InventoryType.all
+   
   end
 
   # findinventory_type which we selected, get all students in that batch
@@ -22,19 +24,6 @@ class InventoryTransfersController < ApplicationController
     @inventories = @inventory_type.inventories
   end
 
-  # get all products of that inventory
-  # this method is use for select all inventory_type in one click
-  # and perform authorization
-  def assign_all
-      @inventories = Inventory.all
-  end
-
-  # get all products of that inventory
-  # this method is use for deselect all student in one click
-  # and perform authorization
-  def remove_all
-    @inventories = Inventory.all
-  end
 
   # this method is used to transfer inventory
   # from one inventory to another inventory
@@ -59,7 +48,7 @@ class InventoryTransfersController < ApplicationController
 
   # redirect to transfer page
   def inventory_transfer2
-    flash[:notice] = 'inventory_transfer'
+    flash[:success] = "Successfully Transfered"
     redirect_to inventory_transfers_path
   end
 end

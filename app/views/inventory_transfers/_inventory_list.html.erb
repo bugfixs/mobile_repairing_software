@@ -15,16 +15,17 @@
         </thead>
          
         <tbody>
+        <%unless @inventories.nil?%>
         <%  @inventories.each do |inventories|  %>
           <tr>
             <td>
               <%= inventories.description %>
             </td>
-            <td class="center">
-              <%= check_box_tag "inventories[]", inventories.id,false,class: 'check_box'%>Assign
+              <td><%= check_box_tag "inventories[]", inventories.id,false,class: 'check_box'%>Assign
             </td>
           </tr>
         <% end %>
+         <%end%>
         </tbody>
       </table>
     </div>

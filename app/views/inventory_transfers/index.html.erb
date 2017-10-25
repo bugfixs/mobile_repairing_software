@@ -4,16 +4,28 @@
   </ul>
 
 <br/><br/>
+<p id="notice"><%= notice %></p>
 
 <div class="row">
 <div class="col-md-3"></div>
   <div class="col-md-4">
-    <%= form_for :inventory_transfer,url:{action:'select',controller:'inventory_transfers'},format: :js,method: :get,remote:true,html:{id: "transfer"} do |f| %>
-  <b>Select a Inventory Type:</b>
-    <%= f.select :id,InventoryType.all.collect{|i| [i.name,i.id]},{prompt:true},{onchange:"inventory_transfer_fun()",class: "form-control",style: "width:350px"}%>
-    <% end %>
+ <%= select_tag :inventory_type_id, options_for_select(InventoryType.all.collect{|u| [u.name, u.id]}), :'data-remote' => 'true', :'data-url' => url_for(:controller => 'inventory_transfers', :action => 'select', format: 'js'),class: "form-control",style:"width:350px" %>
   </div>
 </div>
-
 <div id="stage"></div>
+
+
+<script type='text/javascript'>
+$('#inventory_transfer_inventory_type_id').on('change', function() {
+ var inventory_transfer_inventory_type_id;
+ Item = $(this).val();
+ $.ajax({
+   url: '/inventory_transfers/select',
+   type: 'GET',
+   dataType: 'js',
+   data: {inventory_transfer_inventory_type_id: Item},
+   }).success(function(data) {   
+ });
+});
+</script>
 
