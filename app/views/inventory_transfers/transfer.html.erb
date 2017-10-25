@@ -13,7 +13,7 @@
 <%=form_for :transfer, :url => {:action=> 'inventory_transfer'},method: :get do |f| %>
 <div class="row">
     <div class="col-md-6">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Transfering inventory from </b> <%= @inventory_type.name %> &nbsp;<b>To</b> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Transfering inventory from </b> <font color= 'red'><%= @inventory_type.name %> </font>&nbsp;<b>To</b> 
     </div>
     <div class="col-md-6">      
       <%= f.hidden_field :inventory_type_id, value: @inventory_type.id%>

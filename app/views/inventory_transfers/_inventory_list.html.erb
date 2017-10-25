@@ -10,7 +10,8 @@
         <thead>
           <tr>
             <th>Descrition Name</th>
-            <th>Action</th>
+            <th>Total Stock</th>
+            <th></th>
           </tr>
         </thead>
          
@@ -19,7 +20,8 @@
         <%  @inventories.each do |inventories|  %>
           <tr>
             <td>
-              <%= inventories.description %>
+              <%= inventories.description %></td>
+             <td><%= inventories.total_stock_qty %>
             </td>
               <td><%= check_box_tag "inventories[]", inventories.id,false,class: 'check_box'%>Assign
             </td>
