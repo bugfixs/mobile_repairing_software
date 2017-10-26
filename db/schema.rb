@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023074811) do
+ActiveRecord::Schema.define(version: 20171026075049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20171023074811) do
 
   create_table "inventory_logs", force: :cascade do |t|
     t.bigint "inventory_type_id"
+    t.string "remark"
+    t.string "transfer_item"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["inventory_type_id"], name: "index_inventory_logs_on_inventory_type_id"
@@ -118,6 +120,18 @@ ActiveRecord::Schema.define(version: 20171023074811) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.string "transfer_item"
+    t.string "remark"
+    t.string "transfer_id"
+    t.bigint "inventory_type_id"
+    t.bigint "inventory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_transfers_on_inventory_id"
+    t.index ["inventory_type_id"], name: "index_transfers_on_inventory_type_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -152,4 +166,6 @@ ActiveRecord::Schema.define(version: 20171023074811) do
   add_foreign_key "employees", "employee_types"
   add_foreign_key "inventories", "inventory_types"
   add_foreign_key "inventory_logs", "inventory_types"
+  add_foreign_key "transfers", "inventories"
+  add_foreign_key "transfers", "inventory_types"
 end

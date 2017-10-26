@@ -3,7 +3,7 @@ class InventoriesController < ApplicationController
 
   # GET /inventories
   # GET /inventories.json
-   def index
+  def index
     @inventories = Inventory.all
 
   if params[:search]

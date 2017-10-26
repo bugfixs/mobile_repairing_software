@@ -7,6 +7,7 @@ end
 
 #Devise for User Authentication
 gem 'devise'
+gem 'will_paginate', '~> 3.1.0'
 gem 'cancancan'
 gem 'momentjs-rails'
 gem 'rolify'

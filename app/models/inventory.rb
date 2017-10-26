@@ -3,10 +3,9 @@ class Inventory < ApplicationRecord
   scope :shod, ->(id) { where(id: id).take }
 
 
-
   def self.search(search)
-  where("description LIKE ? OR branch LIKE ? OR map LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
-end
+    where("description LIKE ? OR part_no LIKE ? OR branch LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+  end
   
   def self.to_csv(fields = column_names, options = {})
    CSV.generate(options) do |csv|

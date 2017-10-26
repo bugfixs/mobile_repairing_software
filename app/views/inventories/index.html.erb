@@ -1,27 +1,27 @@
 <div>
   <ul class="breadcrumb">
-    <li><%= link_to 'Home',dashboard_home_index_path%></li>
     <li>Dashboard</li>
+        <li><%= link_to 'Home',dashboard_home_index_path%></li>
+            <li><%= link_to 'Inventories',inventories_path%></li>
   </ul>
 </div>
-
+<h3>Total Parts in Inventories :<%= @inventories.count %></h3>
 <div class="row">
- <div class="col-md-1"></div>
+ <div class="col-md-8"></div>
   <div class="box col-md-1">
+   <div class="pull-left">
 <p>
-  <h3><b>Download/Upload:</b></h3>
-  <b><%= link_to "Export CSV", inventories_path(format: "csv") %></b> |
-  <b><%= link_to "Excel", inventories_path(format: "xls") %></b>
-</p>
-
 <%= form_tag import_inventories_path,url:{action: 'import',controller: 'inventories'}, multipart: true do %>
     <%= file_field_tag :file%>
     <br>
   <%= submit_tag "Import",class: "btn btn-primary" %>
 <% end %>
+  <h3><b>Download/Upload:</b></h3>
+  <b><%= link_to "Export CSV", inventories_path(format: "csv") %></b> |
+  <b><%= link_to "Excel", inventories_path(format: "xls") %></b>
+</p>
 </div>
 </div>
-
  <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
        <div class="panel panel-primary">
@@ -35,6 +35,7 @@
     <%= submit_tag "Search", :name => nil ,class: 'btn btn-primary'%>
     <%= link_to 'Back',inventories_path,class: 'btn btn-primary'%>
 <% end %>
+
 
 <%= link_to 'New Inventory', new_inventory_path %>
 <table class="table table-bordered">
@@ -76,6 +77,7 @@
         <td><%= inventory.latest_modify_date %></td>
         <td><%= inventory.remark %></td>
         <td><%= inventory.inventory_type.name %></td>
+        <td><%= link_to 'Transfer', transfer_inventory_transfer_path(inventory.inventory_type.id, inventory.id),class: "btn btn-danger btn-sm"%></td>
         <td><%= link_to 'Show', inventory,class: "btn btn-warning btn-sm"  %></td>
         <td><%= link_to 'Edit', edit_inventory_path(inventory),class: "btn btn-success btn-sm" %></td>
         <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-sm" %></td>
