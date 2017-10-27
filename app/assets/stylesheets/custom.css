@@ -45,7 +45,12 @@ TABLE OF CONTENT
 /*-------------Resets----------------*/
 .intro-header{
   background-image: url("1.jpg");
-  padding-bottom: 400px;
+  padding-bottom: 500px;
+  background-size: cover;
+}
+.intro-login-header{
+  background-image: url("3.jpg");
+  padding-bottom: 80px;
   background-size: cover;
 }
 .bg-default {

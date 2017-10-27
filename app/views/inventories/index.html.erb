@@ -1,0 +1,92 @@
+<div>
+  <ul class="breadcrumb">
+    <li>Dashboard</li>
+        <li><%= link_to 'Home',dashboard_home_index_path%></li>
+            <li><%= link_to 'Inventories',inventories_path%></li>
+  </ul>
+</div>
+<h3>Total Parts in Inventories :<%= @inventories.count %></h3>
+<div class="row">
+ <div class="col-md-8"></div>
+  <div class="box col-md-1">
+   <div class="pull-left">
+<p>
+<%= form_tag import_inventories_path,url:{action: 'import',controller: 'inventories'}, multipart: true do %>
+    <%= file_field_tag :file%>
+    <br>
+  <%= submit_tag "Import",class: "btn btn-primary" %>
+<% end %>
+  <h3><b>Download/Upload:</b></h3>
+  <b><%= link_to "Export CSV", inventories_path(format: "csv") %></b> |
+  <b><%= link_to "Excel", inventories_path(format: "xls") %></b>
+</p>
+</div>
+</div>
+ <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+       <div class="panel panel-primary">
+            <div class="panel-heading">Employee Details
+        </div>
+ <div class="panel-body">
+<p id="notice"></p>
+
+<%= form_tag(inventories_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Recipes" %>
+    <%= submit_tag "Search", :name => nil ,class: 'btn btn-primary'%>
+    <%= link_to 'Back',inventories_path,class: 'btn btn-primary'%>
+<% end %>
+
+
+<%= link_to 'New Inventory', new_inventory_path %>
+<table class="table table-bordered">
+    <tr>
+      <th><b>Branch</b></th>
+      <th><b>Part no</b></th>
+      <th><b>Description</b></th>
+      <th><b>Total stock qty</b></th>
+      <th><b>Warehouse stock qty</b></th>
+      <th><b>Engineer stock qty</b></th>
+      <th><b>Location1</b></th>
+      <th><b>Location2</b></th>
+      <th><b>Location3</b></th>
+      <th><b>Map</b></th>
+      <th><b>Total stock value</b></th>
+      <th><b>Status</b>/</th>
+      <th><b>Latest modify date</b></th>
+      <th><b>Remark</b></th>
+      <th><b>Inventory type</b></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= inventory.branch %></td>
+        <td><%= inventory.part_no %></td>
+        <td><%= inventory.description %></td>
+        <td><%= inventory.total_stock_qty %></td>
+        <td><%= inventory.warehouse_stock_qty %></td>
+        <td><%= inventory.engineer_stock_qty %></td>
+        <td><%= inventory.location1 %></td>
+        <td><%= inventory.location2 %></td>
+        <td><%= inventory.location3 %></td>
+        <td><%= inventory.map %></td>
+        <td><%= inventory.total_stock_value %></td>
+        <td><%= inventory.status %></td>
+        <td><%= inventory.latest_modify_date %></td>
+        <td><%= inventory.remark %></td>
+        <td><%= inventory.inventory_type.name %></td>
+        <td><%= link_to 'Transfer', transfer_inventory_transfer_path(inventory.inventory_type.id, inventory.id),class: "btn btn-danger btn-sm"%></td>
+        <td><%= link_to 'Show', inventory,class: "btn btn-warning btn-sm"  %></td>
+        <td><%= link_to 'Edit', edit_inventory_path(inventory),class: "btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+</div></div></div>

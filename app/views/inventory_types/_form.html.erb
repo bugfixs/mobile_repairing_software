@@ -1,0 +1,42 @@
+<div>
+  <ul class="breadcrumb">
+    <li><%= link_to 'Home',dashboard_home_index_path%></li>
+    <li><%= link_to 'Inventory Type',inventory_types_path%></li>
+    <li>Dashboard</li>
+  </ul>
+</div>
+
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Employee Type
+        </div>
+<%= form_with(model: inventory_type, local: true) do |form| %>
+  <% if inventory_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(inventory_type.errors.count, "error") %> prohibited this inventory_type from being saved:</h2>
+
+      <ul>
+      <% inventory_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+
+   <div class="panel-body">
+              <div class="row form-group">
+                <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <label for="text_input" class="label_height">Add Inventory Type</label>
+                             <span style="color:red">*</span>
+                            <%= form.text_field :name, id: :inventory_type_name, placeholder: "Inventory Type", class: "form-control"%>
+                    </div>
+                </div>
+                     <div class="col-sm-2 col-sm-offset-5 input_success">
+                          <%= form.submit "Submit", class: 'btn btn-success btn-md form-control'%>
+                     </div>
+              </div>
+          </div>
+       <% end %>
+</div>
