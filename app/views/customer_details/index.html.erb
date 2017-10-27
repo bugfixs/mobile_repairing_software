@@ -13,17 +13,15 @@
                     <th>Bill No</th>
                     <th>Customer name</th>
                     <th>Date</th>
-                    <th>Address</th>
                     <th>Customer no</th>
                     <th>Mobile no</th>
                     <th>Model name</th>
                     <th>Accessory</th>
                     <th>Engineer Name</th>
-                    <th>Repair description</th>
-                    <th>Condition code</th>
-                    <th>Symptom code</th>
-                    <th>Defect code</th>
-                    <th>Repair code</th>
+                    <th>Estimate Cost</th>
+                    <th>Advanced Paid</th>
+                    <th>Balance Cost</th>
+                    <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -34,17 +32,15 @@
                       <td><%= customer_detail.bill_no %></td>
                       <td><%= customer_detail.customer_name %></td>
                       <td><%= customer_detail.date %></td>
-                      <td><%= customer_detail.address %></td>
                       <td><%= customer_detail.customer_no %></td>
                       <td><%= customer_detail.mobile_no %></td>
                       <td><%= customer_detail.model_name %></td>
                       <td><%= customer_detail.accessory %></td>
                       <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
-                      <td><%= customer_detail.repair_description %></td>
-                      <td><%= customer_detail.condition_code %></td>
-                      <td><%= customer_detail.symptom_code %></td>
-                      <td><%= customer_detail.defect_code %></td>
-                      <td><%= customer_detail.repair_code %></td>
+                      <td><%= customer_detail.estimated_cost%></td>
+                      <td><%= customer_detail.advanced_paid %></td>
+                      <td><%= customer_detail.balance_cost%></td>
+                      <td><%= customer_detail.status%></td>
                       <td><%= link_to 'Show', customer_detail,class: "btn btn-warning btn-sm" %></td>
                       <td><%= link_to 'Edit', edit_customer_detail_path(customer_detail),class: "btn btn-success btn-sm" %></td>
                       <td><%= link_to 'Destroy', customer_detail, method: :delete, data: { confirm: 'Are you sure you want to delete?' },class: "btn btn-danger btn-sm"  %></td>
