@@ -1,0 +1,77 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Employee Type
+        </div>
+        <%= form_with(model: employee, local: true) do |form| %>
+          <% if employee.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+              <ul>
+              <% employee.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="panel-body">
+              <div class="row form-group">
+              <div class="col-md-4">
+                        <label for="text_input" class="label_height">Employee Number</label>
+                             <span style="color:red">*</span>
+              <%=form.text_field :employee_number,readonly: true,:value=> @employee.employee_number, class: "form-control"%>
+              </div>
+                    <div class="col-md-4">
+                        <label for="text_input" class="label_height">First Name</label>
+                             <span style="color:red">*</span>
+                            <%=  form.text_field :first_name, id: :employee_first_name, placeholder: "Employee First Name", class: "form-control"%>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label for="text_input" class="label_height">Middle Name</label>
+                             <span style="color:red">*</span>
+                            <%=  form.text_field :middle_name, id: :employee_middle_name, placeholder: "Employee Middle Name", class: "form-control"%>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label for="text_input" class="label_height">Last Name</label>
+                             <span style="color:red">*</span>
+                            <%=   form.text_field :last_name, id: :employee_last_name, placeholder: "Employee Last Name", class: "form-control"%>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label for="text_input" class="label_height">Contact</label>
+                             <span style="color:red">*</span>
+                            <%=   form.text_field :contact, id: :contact, placeholder: "Contact", class: "form-control"%>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label for="text_input" class="label_height">Email</label>
+                             <span style="color:red">*</span>
+                            <%=  form.text_field :email, id: :email, placeholder: "Email", class: "form-control"%>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label for="text_input" class="label_height">Address</label>
+                             <span style="color:red">*</span>
+                            <%=  form.text_field :address, id: :address, placeholder: "Address", class: "form-control"%>
+                    </div>
+
+                     <div class="col-md-4">
+                        <label for="text_input" class="label_height">Employee Type</label>
+                             <span style="color:red">*</span>
+                            <%=  form.select :employee_type_id,EmployeeType.all.collect{|e| [e.name, e.id]},{prompt:true}, placeholder: "Employee Type", class: "form-control"%>
+                    </div>
+
+                
+                </div>
+                     <div class="col-sm-2 col-sm-offset-5 input_success">
+                          <%= form.submit "Submit", class: 'btn btn-success btn-md form-control'%>
+                     </div>
+              </div>
+              </div>
+       <% end %>
+
+

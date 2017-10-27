@@ -1,0 +1,174 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Acknowledgment of Service Request
+        </div>
+                    <div class="panel-body">
+
+        <%= link_to 'Download PDF', engineer_detail_path(@engineer_detail,format: 'pdf'),target: '_blank' %>
+                <%#=hidden_field_tag 'customer_detail', @customer_detail%>
+
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Customer Name:</b></label>&nbsp;
+                                  
+                                    <%= @engineer_detail.customer_detail.customer_name %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Date:</b></label>&nbsp;
+                                  
+                                    <%= @engineer_detail.customer_detail.date %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Address:</b></label>&nbsp;
+                                    
+                                    <%= @engineer_detail.customer_detail.address %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Customer No:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.customer_no %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Telephone No:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.telephone_no %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Mobile No:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.mobile_no %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Model Name:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.model_name %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Purchase Date:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.purchase_date %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Serial No:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.serial_no %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Full warranty:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.full_warranty %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Labor only:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.labor_only %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Parts only:</label></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.parts_only %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Out of warranty:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.out_of_warranty%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repair Received:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.repair_received%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repair Completed:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.repair_completed %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Good Delivered:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.return_by_date%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Defect Description:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.defect_description%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>B2b svc:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.b2b_svc%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Accessory:</label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.accessory %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Engineer Name:</b></label>&nbsp;
+                                   
+                                    <%#= @engineer_copy.employee_id+"-"+@engineer_copy.employee_id%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repair completed:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.repair_completed %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repair Description:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.repair_description %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Condition Code:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.condition_code %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Symptom Code:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.symptom_code %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Defect Code:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.defect_code%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repair Code:</b></label>&nbsp;
+                                   
+                                    <%= @engineer_detail.customer_detail.repair_code%>
+                            </div>
+
+
+
+  
+</div>
+</div>
+</div>
+

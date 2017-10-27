@@ -1,11 +1,17 @@
 <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
         <div class="panel panel-primary">
-            <div class="panel-heading">Customer Complaints
+            <div class="panel-heading">Acknowledgment of Service Request
         </div>
                     <div class="panel-body">
 
-<%= link_to 'Back', customer_details_path%>
+
+<%= link_to 'Back', customer_details_path%><b> | </b>
+<%= link_to 'Download Customer PDF ', customer_detail_path(@customer_detail, format: 'pdf'),target: '_blank' %> <b> | </b>
+
+<%= link_to 'Download Engineer PDF', engineer_detail_path(@engineer_detail,format: 'pdf'),target: '_blank' %>
+
+
                         <div class="row form-group">
                             <div class="col-md-4">
                                 <label for="text_input" class="label_height"><b>Customer Name:</b></label>&nbsp;
@@ -122,15 +128,15 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label for="text_input" class="label_height"><b>Remark:</b></label>&nbsp;
+                                <label for="text_input" class="label_height"><b>Engineer Name:</b></label>&nbsp;
                                    
-                                    <%= @customer_detail.repair_completed %>
+                                    <%= @customer_detail.employee.first_name %>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="text_input" class="label_height"><b>Repair completed:</b></label>&nbsp;
                                    
-                                    <%= @customer_detail.remark %>
+                                    <%= @customer_detail.repair_completed %>
                             </div>
 
                             <div class="col-md-4">

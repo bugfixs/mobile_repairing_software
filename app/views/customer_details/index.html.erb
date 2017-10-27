@@ -6,7 +6,7 @@
             <div class="panel-body">
              <p id="notice"><%= notice %></p>
              <%= link_to 'New Complaint', new_customer_detail_path %>
-       
+             <%#= link_to 'PDF File', customer_details_path(format: 'pdf') %>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -18,7 +18,7 @@
                     <th>Mobile no</th>
                     <th>Model name</th>
                     <th>Accessory</th>
-                    <th>Remark</th>
+                    <th>Engineer Name</th>
                     <th>Repair description</th>
                     <th>Condition code</th>
                     <th>Symptom code</th>
@@ -39,7 +39,7 @@
                       <td><%= customer_detail.mobile_no %></td>
                       <td><%= customer_detail.model_name %></td>
                       <td><%= customer_detail.accessory %></td>
-                      <td><%= customer_detail.remark %></td>
+                      <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
                       <td><%= customer_detail.repair_description %></td>
                       <td><%= customer_detail.condition_code %></td>
                       <td><%= customer_detail.symptom_code %></td>

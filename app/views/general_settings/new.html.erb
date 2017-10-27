@@ -1,0 +1,40 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">GeneralSetting
+        </div>
+                <%= form_for @general_setting,method: :patch do |f| %>
+                    <div class="panel-body">
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height">Name</label>
+                                    <span style="color:red">*</span>
+										<%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height">Contact</label>
+                                    <span style="color:red">*</span>
+										<%= f.text_field :contact, placeholder: "Phone No", class: "form-control"%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height">Address</label>
+                                     <span style="color:red">*</span>
+                                        <%= f.text_field :address, placeholder: "Address", class: "form-control"%>
+                           </div>
+
+                            <div class="col-md-4">
+                               <label for="text_input" class="label_height">Email</label>
+                                     <span style="color:red">*</span>
+                                         <%= f.text_field :email, placeholder: "Email", class: "form-control"%>
+                            </div>
+                               
+                                   
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-4 input_success">
+                                         <%= f.submit "Update", class: 'btn btn-success btn-md form-control'%>
+                        </div>
+                 
+</div>
+ <% end %>
