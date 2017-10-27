@@ -5,6 +5,7 @@ class CreateInventories < ActiveRecord::Migration[5.1]
       t.string :part_no
       t.text :description
       t.string :total_stock_qty
+      t.string :transfered_stock_qty
       t.string :warehouse_stock_qty
       t.string :engineer_stock_qty
       t.string :location1

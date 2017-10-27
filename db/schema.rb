@@ -10,41 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026075049) do
+ActiveRecord::Schema.define(version: 20171027075431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "customer_details", force: :cascade do |t|
-    t.string "customer_name"
-    t.date "date"
-    t.string "address"
-    t.string "customer_no"
-    t.string "telephone_no"
-    t.string "mobile_no"
-    t.string "model_name"
-    t.date "purchase_date"
-    t.string "serial_no"
-    t.string "full_warranty"
-    t.string "labor_only"
-    t.string "parts_only"
-    t.string "out_of_warranty"
-    t.string "repair_received"
-    t.string "repair_completed"
-    t.string "good_delivered"
-    t.date "return_by_date"
-    t.string "defect_description"
-    t.string "b2b_svc"
-    t.string "accessory"
-    t.string "remark"
-    t.string "repair_description"
-    t.string "condition_code"
-    t.string "symptom_code"
-    t.string "defect_code"
-    t.string "repair_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "employee_types", force: :cascade do |t|
     t.string "name"
@@ -80,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171026075049) do
     t.string "part_no"
     t.text "description"
     t.string "total_stock_qty"
+    t.string "transfered_stock_qty"
     t.string "warehouse_stock_qty"
     t.string "engineer_stock_qty"
     t.string "location1"
@@ -93,13 +63,14 @@ ActiveRecord::Schema.define(version: 20171026075049) do
     t.bigint "inventory_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "transfer_id"
     t.index ["inventory_type_id"], name: "index_inventories_on_inventory_type_id"
+    t.index ["transfer_id"], name: "index_inventories_on_transfer_id"
   end
 
   create_table "inventory_logs", force: :cascade do |t|
     t.bigint "inventory_type_id"
-    t.string "remark"
-    t.string "transfer_item"
+    t.string "transfer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["inventory_type_id"], name: "index_inventory_logs_on_inventory_type_id"
@@ -125,12 +96,9 @@ ActiveRecord::Schema.define(version: 20171026075049) do
   create_table "transfers", force: :cascade do |t|
     t.string "transfer_item"
     t.string "remark"
-    t.string "transfer_id"
     t.bigint "inventory_type_id"
-    t.bigint "inventory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["inventory_id"], name: "index_transfers_on_inventory_id"
     t.index ["inventory_type_id"], name: "index_transfers_on_inventory_type_id"
   end
 
@@ -165,7 +133,7 @@ ActiveRecord::Schema.define(version: 20171026075049) do
 
   add_foreign_key "employees", "employee_types"
   add_foreign_key "inventories", "inventory_types"
+  add_foreign_key "inventories", "transfers"
   add_foreign_key "inventory_logs", "inventory_types"
-  add_foreign_key "transfers", "inventories"
   add_foreign_key "transfers", "inventory_types"
 end
