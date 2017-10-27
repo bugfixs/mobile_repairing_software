@@ -1,0 +1,138 @@
+<div>
+  <ul class="breadcrumb">
+    <li><%= link_to 'Home',dashboard_home_index_path%></li>
+    <li><%= link_to 'Inventory',inventories_path%></li>
+    <li>Dashboard</li>
+  </ul>
+</div>
+
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Inventory
+        </div>
+<%= form_with(model: inventory, local: true) do |form| %>
+  <% if inventory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+
+      <ul>
+      <% inventory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <div class="panel-body">
+              <div class="row form-group">
+             
+                    <div class="col-md-3">
+                        <label for="text_input" class="label_height">Branch</label>
+                             <span style="color:red">*</span>
+                          <%= form.text_field :branch, id: :inventory_branch, placeholder: "Branch", class: "form-control"%>
+                  </div>  
+
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Part No</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :part_no, id: :inventory_part_no, placeholder: "Part No", class: "form-control" %>
+  </div>
+
+  
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Total Stock Qty</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :total_stock_qty, id: :inventory_total_stock_qty, placeholder: "Total Stock Qty", class: "form-control"  %>
+  </div>
+
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">WareHouse Stock Qty</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :warehouse_stock_qty, id: :inventory_warehouse_stock_qty, placeholder: "WareHouse Stock Qty", class: "form-control"  %>
+  </div>
+
+  
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Engineer Stock Qty </label>
+         <span style="color:red">*</span>
+    <%= form.text_field :engineer_stock_qty, id: :inventory_engineer_stock_qty, placeholder: "Engineer Stock Qty", class: "form-control"  %>
+  </div>
+
+ 
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Location1</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :location1, id: :inventory_location1, placeholder: "Location1", class: "form-control"  %>
+  </div>
+
+ 
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Location2</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :location2, id: :inventory_location2 , placeholder: "Location2", class: "form-control"%>
+  </div>
+
+ 
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Location3</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :location3, id: :inventory_location3, placeholder: "Location3", class: "form-control" %>
+  </div>
+
+  
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">MAP</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :map, id: :inventory_map, placeholder: "MAP", class: "form-control" %> 
+  </div>
+
+  
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Total Stock Value</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :total_stock_value, id: :inventory_total_stock_value, placeholder: "Total Stock Value", class: "form-control"%>
+  </div>
+
+ 
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Status</label>
+         <span style="color:red">*</span>
+    <%= form.text_field :status, id: :inventory_status , placeholder: "Status", class: "form-control"%>
+  </div>
+
+
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Latest Modify Date</label>
+         <span style="color:red">*</span>
+    <%= form.date_field :latest_modify_date,:value => Time.now.strftime('%Y-%m-%d'),class: "form-control datepicker" ,style:"width:440px" %>
+  </div>
+<br><br>
+<br><br>
+   <div class="col-md-3">
+    <label for="text_input" class="label_height">Select Inventory Type</label>
+         <span style="color:red">*</span>
+    <%= form.select :inventory_type_id, InventoryType.all.collect{|i| [i.name,i.id]},{prompt:true}, class: "form-control" %>
+  </div>
+
+   <div class="col-md-3">
+    <label for="text_input" class="label_height">Description</label>
+         <span style="color:red">*</span>
+    <%= form.text_area :description, id: :inventory_description, placeholder: "Description", class: "form-control"  %>
+  </div>
+
+
+
+ <div class="col-md-3">
+    <label for="text_input" class="label_height">Remark</label>
+    <%= form.text_area :remark, id: :inventory_remark, placeholder: "Remark", class: "form-control"  %>
+  </div>
+
+
+         <div class="col-sm-2 col-sm-offset-5 input_success">
+                          <%= form.submit "Submit", class: 'btn btn-success btn-md form-control'%>
+                     </div>
+      </div>
+            
+       <% end %>
+        </div>
+      </div>

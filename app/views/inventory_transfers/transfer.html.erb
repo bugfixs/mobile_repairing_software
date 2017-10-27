@@ -1,0 +1,37 @@
+<div>
+  <ul class="breadcrumb">
+    <li><%= link_to 'Home',dashboard_home_index_path %></li>
+    <li>Inventory Transfer</li>
+  </ul>
+</div>
+
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Inventory
+        </div>
+<%=form_for :transfer, :url => {:action=> 'inventory_transfer'},method: :get do |f| %>
+<div class="row">
+    <div class="col-md-6">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Transfering inventory from </b> <font color= 'red'><%= @inventory_type.name %> </font>&nbsp;<b>To</b> 
+    </div>
+    <div class="col-md-6">      
+      <%= f.hidden_field :inventory_type_id, value: @inventory_type.id%>
+      <%= f.select :id,InventoryType.all.collect{|i| [i.name, i.id]},prompt:'Select a Inventory Type',class: "a-action"%>
+    </div>
+</div>   
+
+
+<div id="inventory_list">
+    <%= render 'inventory_list' %>
+</div>
+
+<div class="row">
+  <div class="col-md-5"></div>
+  <div class="col-md-5">
+    <%= f.submit "Transfer Inventory", class: 'btn btn-danger'%>
+  </div>
+</div>
+<% end %>
+
+</div></div>

@@ -1,0 +1,63 @@
+<div>
+  <ul class="breadcrumb">
+    <li>Dashboard</li>
+        <li><%= link_to 'Home',dashboard_home_index_path%></li>
+            <li><%= link_to 'Inventories',inventories_path%></li>
+  </ul>
+</div>
+<h3>Total Parts in Inventories :<%= @inventories.count %></h3>
+
+
+<table class="table table-bordered">
+    <tr>
+      <th><b>Branch</b></th>
+      <th><b>Part no</b></th>
+      <th><b>Description</b></th>
+      <th><b>Total stock qty After 
+      Transfer</b></th>
+       <th><b>Total stock qty Before Transfer</b></th>
+      <th><b>Warehouse stock qty</b></th>
+      <th><b>Engineer stock qty</b></th>
+      <th><b>Location1</b></th>
+      <th><b>Location2</b></th>
+      <th><b>Location3</b></th>
+      <th><b>Map</b></th>
+      <th><b>Total stock value</b></th>
+      <th><b>Status</b>/</th>
+      <th><b>Latest modify date</b></th>
+      <th><b>Remark</b></th>
+      <th><b>Inventory type transfered From</b></th>
+      <th><b>Inventory type transfered to</b></th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= inventory.branch %></td>
+        <td><%= inventory.part_no %></td>
+        <td><%= inventory.description %></td>
+        <td><%= inventory.total_stock_qty %></td>
+        <td><%= inventory.transfered_stock_qty %></td>
+        <td><%= inventory.warehouse_stock_qty %></td>
+        <td><%= inventory.engineer_stock_qty %></td>
+        <td><%= inventory.location1 %></td>
+        <td><%= inventory.location2 %></td>
+        <td><%= inventory.location3 %></td>
+        <td><%= inventory.map %></td>
+        <td><%= inventory.total_stock_value %></td>
+        <td><%= inventory.status %></td>
+        <td><%= inventory.latest_modify_date %></td>
+        <td><%= Transfer.last.remark%></td>
+        <td><%= Transfer.last.inventory_type.name%></td>
+        <td><%= inventory.inventory_type.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+</div></div></div>

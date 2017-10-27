@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :inventories do
+    collection {post :import}
+  end
+  resources :inventory_types
   root 'home#index'
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :employees
@@ -9,5 +13,17 @@ Rails.application.routes.draw do
   		get :dashboard
   		end
   	end
+
+  resources :inventory_transfers do
+    collection do
+      get :select
+      get :assign_all
+      get :remove_all
+      get :inventory_transfer
+    end
+    member do
+      get :transfer
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

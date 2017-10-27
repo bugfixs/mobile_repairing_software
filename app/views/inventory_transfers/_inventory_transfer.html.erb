@@ -1,0 +1,63 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Inventory
+        </div>
+<%=form_for :transfer, :url => {:action=> 'inventory_transfer'},method: :get do |f| %>
+<div class="row">
+    <div class="col-md-6">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Transfering inventory from </b> <font color= 'red'><%= @inventory_type.name %> </font>&nbsp;<b>To</b> 
+    </div>
+    <div class="col-md-6">      
+      <%= f.hidden_field :inventory_type_id, value: @inventory_type.id%>
+      <label for="text_input" class="label_height">Select</label>
+                             <span style="color:red">*</span>
+
+      <%= f.select :id,InventoryType.all.collect{|i| [i.name, i.id]},prompt:'Select a Inventory Type',class: "a-action"%>
+    </div>
+</div>   
+
+<div id="inventory_list">
+      <div class="box-content" style="overflow-y: scroll; height:auto">
+      <table id="datatable" class="table table-striped table-bordered responsive">
+        <thead>
+          <tr>
+            <th>Part No</th>
+            <th>Descrition Name</th>
+            <th>Total Stock</th>
+            <th>Transfer Item Qty</th>
+            <th>Remark</th>
+             <th>Assign</th>
+            <th></th>
+          </tr>
+        </thead>
+         
+        <tbody>
+        <%  @inventories.each do |inventories|  %>
+          <tr>
+           <td>
+              <%= inventories.part_no %></td>
+            <td>
+              <%= inventories.description %></td>
+             <td><%= inventories.total_stock_qty %></td>
+            <td> <%= f.text_field :transfer_item %></td>
+            <td> <%= f.text_field :remark%></td>
+
+             <td><%= check_box_tag "inventories[]", inventories.id,false,class: 'check_box'%>Assign
+            </td>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5"></div>
+  <div class="col-md-5">
+    <%= f.submit "Transfer Inventory", class: 'btn btn-danger'%>
+  </div>
+</div>
+<% end %>
+</div></div>

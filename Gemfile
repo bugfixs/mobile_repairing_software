@@ -7,14 +7,23 @@ end
 
 #Devise for User Authentication
 gem 'devise'
+gem 'will_paginate', '~> 3.1.0'
 gem 'cancancan'
+gem 'momentjs-rails'
 gem 'rolify'
+gem "responders"
 gem 'font-awesome-sass', '~> 4.7.0'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
+gem 'bootstrap-sass'
 gem "font-awesome-rails"
 gem 'jquery-ui-rails'
+gem 'jquery-rails'
 gem 'glyphicons-rails', '~> 0.1.2'
+gem 'bootstrap-datepicker-rails'
+gem 'html5_validators'
+gem 'remotipart', '~> 1.2'
+gem 'roo-xls'
+gem 'popper_js', '~> 1.12.3' 
+gem 'record_tag_helper', '~> 1.0' 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
@@ -32,8 +41,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-validation-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

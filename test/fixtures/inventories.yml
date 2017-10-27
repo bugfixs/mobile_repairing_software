@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch: MyString
+  part_no: MyString
+  description: MyText
+  total_stock_qty: MyString
+  warehouse_stock_qty: MyString
+  engineer_stock_qty: MyString
+  location1: MyString
+  location2: MyString
+  location3: MyString
+  map: MyString
+  total_stock_value: MyString
+  status: MyString
+  latest_modify_date: 2017-10-22
+  remark: MyText
+  inventory_type: one
+
+two:
+  branch: MyString
+  part_no: MyString
+  description: MyText
+  total_stock_qty: MyString
+  warehouse_stock_qty: MyString
+  engineer_stock_qty: MyString
+  location1: MyString
+  location2: MyString
+  location3: MyString
+  map: MyString
+  total_stock_value: MyString
+  status: MyString
+  latest_modify_date: 2017-10-22
+  remark: MyText
+  inventory_type: two
