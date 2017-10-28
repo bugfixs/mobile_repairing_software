@@ -25,5 +25,11 @@ Rails.application.routes.draw do
       get :transfer
     end
   end
+
+  resources :reports do 
+    collection do
+    get :select, :report, :transfer
+  end
+end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

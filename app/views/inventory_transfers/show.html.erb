@@ -23,8 +23,8 @@
       <th><b>Status</b>/</th>
       <th><b>Latest modify date</b></th>
       <th><b>Remark</b></th>
+      <th><b>Inventory type transfered To</b></th>
       <th><b>Inventory type transfered From</b></th>
-      <th><b>Inventory type transfered to</b></th>
 
     </tr>
   </thead>
@@ -47,7 +47,7 @@
         <td><%= @inventory.latest_modify_date %></td>
         <td><%= @inventory.transfer.remark%></td>
         <td><%= @inventory.transfer.inventory_type.name%></td>
-        <td><%=  @inventory.inventory_type.name %></td>
+        <td><%= @inventory.inventory_type.name %></td>
       </tr>
   </tbody>
 </table>

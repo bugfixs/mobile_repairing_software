@@ -1,0 +1,49 @@
+<div>
+  <ul class="breadcrumb">
+    <li><%= link_to 'Home',dashboard_home_index_path%></li>
+    <li>Dashboard</li>
+  </ul>
+</div>
+
+ <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+      <div class="panel panel-primary">
+            <div class="panel-heading">Inventory Logs
+        </div>
+ <div class="panel-body">
+ <p id="notice"><%= notice %></p>
+ <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th><b>Inventory Type Transfered From</b></th>
+                                        <th><b>Inventory Type Transfered To</b></th>
+                                        <th><b>Inventory Item Name</b></th>
+                                        <th><b>Part No</b></th>
+                                        <th><b>Total Transfered Qty</b></th>
+                                    </tr>
+                                 </thead>
+
+                                  <tbody>
+                                    <% @transfers.each do |t| %>
+                                      <% @logs.each do |l|%>
+                                       <% l.inventory_type.inventories.each do |p| %>
+                                       
+                                        <tr>
+                                          <td><%= t.inventory_type.name%></td>
+                                            <td><%= l.inventory_type.name%></td>
+                                           <td><%= p.description%></td>
+                                            <td><%= p.part_no%></td>
+                                          
+                                             <td><%= t.transfer_item%></td>
+                                             
+                                          
+                                        </tr>
+                                  
+                                      <% end %>
+                                     <% end %>
+                                      <% end %>
+                                 </tbody>
+</table>
+</div>
+</div>
+</div>
