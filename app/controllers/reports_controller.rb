@@ -1,8 +1,8 @@
 class ReportsController < ApplicationController
     def select
-        @inventory_type = InventoryType.shod(params[:inventory_type_id])
-        @inventory_types = InventoryType.all
-        @inventories = @inventory_type.inventories
+      @inventory_type = InventoryType.shod(params[:inventory_type_id])
+      @inventory_types = InventoryType.all
+      @inventories = @inventory_type.inventories
     end
 
 
@@ -16,8 +16,7 @@ class ReportsController < ApplicationController
     end
 
     def transfer
-        @transfers = Transfer.all
-        @logs = InventoryLog.all
-        @inventories ||= Inventory.all
+        @inventory_transfers = Transfer.all
+       @inventories ||= Inventory.all
     end
 end

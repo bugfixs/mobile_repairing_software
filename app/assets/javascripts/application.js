@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery3
+//= require highcharts
+//= require chartkick
 //= require jquery.turbolinks
 //= require popper
 //= require jquery-ui

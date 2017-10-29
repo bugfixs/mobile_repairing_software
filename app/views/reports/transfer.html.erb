@@ -1,49 +1,58 @@
-<div>
-  <ul class="breadcrumb">
-    <li><%= link_to 'Home',dashboard_home_index_path%></li>
-    <li>Dashboard</li>
-  </ul>
-</div>
-
+<b>Total Count of Inventories : <%=@inventory_transfers.count%></b>
  <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
-      <div class="panel panel-primary">
-            <div class="panel-heading">Inventory Logs
+       <div class="panel panel-primary">
+            <div class="panel-heading">Transfer Details
         </div>
  <div class="panel-body">
- <p id="notice"><%= notice %></p>
- <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                    <th><b>Inventory Type Transfered From</b></th>
-                                        <th><b>Inventory Type Transfered To</b></th>
-                                        <th><b>Inventory Item Name</b></th>
-                                        <th><b>Part No</b></th>
-                                        <th><b>Total Transfered Qty</b></th>
-                                    </tr>
-                                 </thead>
+<p id="notice"></p>
+ <div class="box-content" style="overflow-y: auto;height: 550px;width:100%">
+<table class="table table-striped table-bordered responsive">
+    <tr>
+      <th><b>Branch</b></th>
+      <th><b>Part no</b></th>
+      <th><b>Description</b></th>
+      <th><b>Total stock qty After 
+      Transfer</b></th>
+       <th><b>Total stock qty Before Transfer</b></th>
+      <th><b>Warehouse stock qty</b></th>
+      <th><b>Engineer stock qty</b></th>
+      <th><b>Map</b></th>
+      <th><b>Total stock value</b></th>
+      <th><b>Status</b>/</th>
+      <th><b>Latest modify date</b></th>
+      <th><b>Remark</b></th>
+      <th><b>Item Transfered Qty </b></th>
+      <th><b>Item Transfered From </b></th>
+       <th><b>Inventory type To </b></th>
+    </tr>
+  </thead>
 
-                                  <tbody>
-                                    <% @transfers.each do |t| %>
-                                      <% @logs.each do |l|%>
-                                       <% l.inventory_type.inventories.each do |p| %>
-                                       
-                                        <tr>
-                                          <td><%= t.inventory_type.name%></td>
-                                            <td><%= l.inventory_type.name%></td>
-                                           <td><%= p.description%></td>
-                                            <td><%= p.part_no%></td>
-                                          
-                                             <td><%= t.transfer_item%></td>
-                                             
-                                          
-                                        </tr>
-                                  
-                                      <% end %>
-                                     <% end %>
-                                      <% end %>
-                                 </tbody>
+  <tbody>
+
+    <%@inventories.each do |inventory|%>
+      <tr>
+       <%if inventory.transfer_id.present?%>
+        <td><%= inventory.branch %></td>
+        <td><%= inventory.part_no %></td>
+        <td><%= inventory.description %></td>
+        <td><%= inventory.total_stock_qty %></td>
+        <td><%= inventory.transfered_stock_qty %></td>
+        <td><%= inventory.warehouse_stock_qty %></td>
+        <td><%= inventory.engineer_stock_qty %></td>
+        <td><%= inventory.map %></td>
+        <td><%= inventory.total_stock_value %></td>
+        <td><%= inventory.status %></td>
+        <td><%= inventory.latest_modify_date %></td>
+       
+        <td><%= inventory.transfer.remark%></td>
+         <td><%= inventory.transfer.transfer_item%></td>
+        <td><%= inventory.transfer.inventory_type.name%></td>
+        <td><%= inventory.inventory_type.name %></td>
+      <%end%>
+      </tr>
+      <%end%>
+  </tbody>
 </table>
-</div>
-</div>
-</div>
+<br>
+</div></div></div></div>
