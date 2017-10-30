@@ -5,8 +5,6 @@
             <li><%= link_to 'Inventories',inventories_path%></li>
   </ul>
 </div>
-
-
 <div class="row">
  <div class="col-md-1"></div>
   <div class="box col-md-3">
@@ -24,72 +22,32 @@
  <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
        <div class="panel panel-primary">
-            <div class="panel-heading">Employee Details
+            <div class="panel-heading">Inventory Details
         </div>
  <div class="panel-body">
 <p id="notice"></p>
 
-<%= form_tag(inventories_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-    <%= submit_tag "Search", :name => nil ,class: 'btn btn-primary'%>
-    <%= link_to 'Back',inventories_path,class: 'btn btn-primary'%>
+<%= form_for :inventory, url:{action:'search'}, method: :get,remote:true,id: 'search' do |f|%>
+    <b>Search:</b>
+      <br>
+      <%= text_field_tag :search,"",placeholder:'Search',oninput:"$('#search').submit();",class:"form-control",style: "width: 300px"%>
 <% end %>
-<%= link_to 'New Inventory', new_inventory_path %>
- <div class="box-content" style="overflow-y: auto;height: 550px;width:100%">
-<table class="table table-striped table-bordered responsive">
 
-    <tr>
-      <th><b>Branch</b></th>
-      <th><b>Part no</b></th>
-      <th><b>Description</b></th>
-      <th><b>Total stock qty</b></th>
-      <th><b>Warehouse stock qty</b></th>
-      <th><b>Engineer stock qty</b></th>
-      <th><b>Map</b></th>
-      <th><b>Total stock value</b></th>
-      <th><b>Status</b>/</th>
-      <th><b>Latest modify date</b></th>
-      <th><b>Inventory type</b></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div id="search"></div>
 
-  <tbody>
-    <%total_amt = 0%>
-   <%total_stock_qty_amt = 0%>
-    <%total_warehouse_qty = 0%>
-     <%total_map_amt = 0%>
-    <% @inventories.each do |inventory| %>
-      <tr>
-        <td><%= inventory.branch %></td>
-        <td><%= inventory.part_no %></td>
-        <td><%= inventory.description %></td>
-        <td><%= inventory.total_stock_qty %></td>
-        <td><%= inventory.warehouse_stock_qty %></td>
-        <td><%= inventory.engineer_stock_qty %></td>
-        <td><%= inventory.map %></td>
-        <td><%= inventory.total_stock_value %></td>
-        <td><%= inventory.status %></td>
-        <td><%= inventory.latest_modify_date %></td>
-        <td><%= inventory.inventory_type.name %></td>
-        <td><%= link_to 'Transfer', transfer_inventory_transfer_path(inventory.inventory_type.id, inventory.id),class: "btn btn-danger btn-sm"%></td>
-        <td><%= link_to 'Show', inventory,class: "btn btn-warning btn-sm"  %></td>
-        <td><%= link_to 'Edit', edit_inventory_path(inventory),class: "btn btn-success btn-sm" %></td>
-        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-danger btn-sm" %></td>
-      </tr>
-     <% total_amt += inventory.total_stock_value.to_i%>
-      <%total_stock_qty_amt += inventory.total_stock_qty.to_i%>
-      <% total_warehouse_qty += inventory.warehouse_stock_qty.to_i%>
-      <% total_map_amt += inventory.map.to_i%>
-      <%end%>
-       <b>Total Stock Qty : <%=total_stock_qty_amt%></b><br>
-      <b>Total Stock Value : <%=total_amt%></b><br>
-      <b>Total WareHouse Stock Qty : <%=total_warehouse_qty%></b><br>
-      <b>Total MAP : <%=total_map_amt%></b><br>
-  </tbody>
-</table>
-
-<br>
-
-
-</div></div></div></div>
+<script type='text/javascript'>
+$('#search').on('change', function() {
+ var search;
+ Item = $(this).val();
+ $.ajax({
+   url: '/inventories/search',
+   type: 'GET',
+   dataType: 'script',
+   data: {search: Item},
+   }).done(function(data) {
+     $('#search').html(data);
+    
+   
+ });
+});
+</script>
