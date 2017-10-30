@@ -2,8 +2,10 @@ class Inventory < ApplicationRecord
   belongs_to :inventory_type
   belongs_to :transfer, optional:true
   scope :shod, ->(id) { where(id: id).take }
-
-
+  validates :branch, presence:true
+  validates :description, presence:true
+  validates :part_no , presence:true
+  validates :inventory_type_id, presence:true
   def self.search(search)
     where("description LIKE ? OR part_no LIKE ? OR branch LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
   end
@@ -49,4 +51,11 @@ def self.open_spreadsheet(file)
   else raise "Unknown file type: #{file.original_filename}"
   end
 end
+ 
+  # def self.search_inventory(search)
+  #   Inventory.where "concat_ws(' ',description)like ? \
+  #   OR concat_ws(' ',part_no)like ? \
+  #   OR branch like ?", "#{search}%", "#{search}%", "#{search}%"
+  # end
+    
 end

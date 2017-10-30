@@ -29,7 +29,7 @@
 <div class="row">
   <div class="col-md-5"></div>
   <div class="col-md-5">
-    <%= f.submit "Transfer Inventory", class: 'btn btn-danger'%>
+    <%= f.submit "Transfer Inventory",  data: { confirm: 'Are you sure you want to transfer?' } ,class: 'btn btn-danger'%>
   </div>
 </div>
 <% end %>
