@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :inventories do
-    collection {post :import}
+    collection do
+      post :import
+      get :search
+    end
   end
   resources :inventory_types
   root 'home#index'

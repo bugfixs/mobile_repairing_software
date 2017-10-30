@@ -19,6 +19,15 @@ class InventoriesController < ApplicationController
     end
   end
 
+    # find Inventory from database which we have type in text box
+  def search
+    @inventories ||= Inventory.search_inventory(params[:search])
+    respond_to do |format|
+    format.js 
+  end
+  end
+
+
   def import
     Inventory.import(params[:file])
     redirect_to inventories_path, notice: "Inventories imported successfully."
