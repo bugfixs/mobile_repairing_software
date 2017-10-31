@@ -8,13 +8,12 @@
   </head>
 
   <body>
-  <div id="user_nav">
+ 
   <% if user_signed_in? %>
       <%= render 'layouts/nav'%>
   <% else %>
   <%= render 'layouts/nav'%>
   <% end %>
-</div>
-    <%= yield %>
+  <%= yield %>
   </body>
 </html>

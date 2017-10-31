@@ -6,8 +6,15 @@ class Inventory < ApplicationRecord
   validates :description, presence:true
   validates :part_no , presence:true
   validates :inventory_type_id, presence:true
-  def self.search(search)
-    where("description LIKE ? OR part_no LIKE ? OR branch LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+  # def self.search(search)
+  #   where("description LIKE ? OR part_no LIKE ? OR branch LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+  # end
+
+  def self.search_inventory(search)
+    return if search.empty?
+    Inventory.where "concat_ws(' ',description)like ? \
+    OR concat_ws(' ',part_no)like ? \
+    OR branch like ?", "#{search}%", "#{search}%", "#{search}%"
   end
   
   def self.to_csv(fields = column_names, options = {})
@@ -51,11 +58,4 @@ def self.open_spreadsheet(file)
   else raise "Unknown file type: #{file.original_filename}"
   end
 end
- 
-  # def self.search_inventory(search)
-  #   Inventory.where "concat_ws(' ',description)like ? \
-  #   OR concat_ws(' ',part_no)like ? \
-  #   OR branch like ?", "#{search}%", "#{search}%", "#{search}%"
-  # end
-    
 end

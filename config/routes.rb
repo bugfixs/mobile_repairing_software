@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :inventories do
     collection do
       post :import
-      get :search
+      get :search_inventory
+      get :view_all
     end
   end
   resources :inventory_types

@@ -24,3 +24,7 @@
 function inventory_transfer_fun(){
  $('#transfer').submit();
 }
+
+function search(){
+ $('#search').submit();
+}
