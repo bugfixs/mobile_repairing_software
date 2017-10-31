@@ -5,12 +5,7 @@ class InventoriesController < ApplicationController
   # GET /inventories.json
   def index
     @inventories = Inventory.all
-
-  if params[:search]
-     @inventories  = Inventory.search(params[:search]).order("created_at DESC")
-  else
-     @inventories  = Inventory.all.order("created_at DESC")
-  end
+    params[:search] ?  @inventories  = Inventory.search(params[:search]).order("created_at DESC") :  @inventories  = Inventory.all.order("created_at DESC")
     respond_to do |format|
     format.html
     format.json
@@ -21,15 +16,19 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def view_all
+    @inventories = Inventory.all
+  end
+
     # find Inventory from database which we have type in text box
-  def search
+  def search_inventory
     if params[:search].present?
     @inventories ||= Inventory.search_inventory(params[:search])
     respond_to do |format|
-      format.js {}
+    format.js {render layout: false if request.xhr?}
         # format.js {render :partial => 'search_all' ,:layout => false}
-  end
-end
+    end
+    end
   end
 
 

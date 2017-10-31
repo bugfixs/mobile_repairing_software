@@ -5,42 +5,31 @@
             <li><%= link_to 'Inventories',inventories_path%></li>
   </ul>
 </div>
-<div class="row">
- <div class="col-md-1"></div>
-  <div class="box col-md-3">
-   <div class="pull-left">
-<%= form_tag import_inventories_path,url:{action: 'import',controller: 'inventories'}, multipart: true do %>
-    <%= file_field_tag :file%>
-  <%= submit_tag "Import",class: "btn btn-primary" %>
-<% end %>
-  <h3><b>Download/Upload:</b></h3>
-  <b><%= link_to "Export CSV", inventories_path(format: "csv") %></b> |
-  <b><%= link_to "Excel", inventories_path(format: "xls") %></b>
-</div>
-</div>
-</div>
+
  <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
        <div class="panel panel-primary">
-            <div class="panel-heading">Inventory Details
+            <div class="panel-heading">Inventory Search
         </div>
  <div class="panel-body">
 <p id="notice"></p>
 
-<%= form_for :inventory, url:{action:'search'}, method: :get,remote:true,id: 'search' do |f|%>
+<%= form_for :inventory, method: :get,remote:true,id: 'search' do |f|%>
     <b>Search:</b>
       <br>
-      <%= text_field_tag :search,"",placeholder:'Search',oninput:"$('#search').submit();",class:"form-control",style: "width: 300px"%>
+      <%= text_field_tag :search,"",placeholder:'Search',class:"form-control",style: "width: 300px"%>
 <% end %>
 
-<div id="search"></div>
+<div id="search_inventory">
+  <%= render 'search_all'%>
+</div>
 
 <script type='text/javascript'>
 $('#search').on('change', function() {
  var search;
  Item = $(this).val();
  $.ajax({
-   url: '/inventories/search',
+   url: '/inventories/search_inventory',
    type: 'GET',
    dataType: 'script',
    data: {search: Item},
