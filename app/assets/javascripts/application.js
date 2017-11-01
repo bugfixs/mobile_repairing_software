@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery3
+//= require highcharts
+//= require chartkick
 //= require jquery.turbolinks
 //= require popper
 //= require jquery-ui
@@ -21,4 +23,8 @@
 //= require_tree .
 function inventory_transfer_fun(){
  $('#transfer').submit();
+}
+
+function search(){
+ $('#search').submit();
 }

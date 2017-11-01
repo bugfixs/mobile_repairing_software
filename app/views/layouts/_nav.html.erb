@@ -14,37 +14,48 @@
  <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="home">
-      <font color="blue">Shree Communications</font>
-      </a>
+      <font color="#0000ff">Shree Communications</font>
     </div>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to "Sign out", destroy_user_session_path,method: :delete %></li>
        <li><%= link_to "Home", dashboard_home_index_path %></li>
-       
+       <%if current_user.role == 'SuperAdmin'%>
        <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
           <li><%= link_to "Employee Type",new_employee_type_path%></li>
+          <li><%= link_to "View All Employee Type",employee_types_path%></li>
           <li><%= link_to "Add Employee",new_employee_path%></li>
+          <li><%= link_to "View All Employee",employees_path%></li>
      </ul>
-   </li>
+   </li><%end%>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
            <li><%= link_to "Add Inventory Type",new_inventory_type_path%></li>
-            <li><%= link_to "Inventory Transfer",inventories_path%></li>
-     
+            <li><%= link_to "View All Inventory/Import", view_all_inventories_path%></li>
+            <li><%= link_to "Search Inventory/Transfer", inventories_path%></li>
            <li><%= link_to "Create Inventory",new_inventory_path%></li></ul></li>
-
+<%if current_user.role == 'SuperAdmin'%>
       <li><%= link_to "GeneralSetting",new_general_setting_path%></li>
+      <%end%>
        <li><%= link_to "Customer Complaints",'#'%></li>
-           <li><%= link_to "Reports",'#'%></li>
-     
+
+<%if current_user.role == 'SuperAdmin'%>
+       <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+           <li><%= link_to "Inventory Reports", report_reports_path%></li>
+            <li><%= link_to "Inventory Transfer Reports",transfer_reports_path%></li>
+     <%end%>
   </ul>
-       
+  <div class = "col-md-8"></div>
+  <div class= "pull-right">
+         &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; <font color= "red"> Signed in as <%= current_user.role %></font>
+        </div></div>
+        <font color= "dark red">User : <%= current_user.email %></font>
     </ul>
   </div>
 </nav>
@@ -54,15 +65,11 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="home">
-      <font color="blue">Samsung Repair</font>
-      </a>
+      <font color="#000ff">Shree Communications</font>
     </div>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to "Sign In", new_user_session_path %></li>
-      
     </ul>
-  </div>
 </nav>
- <%end%>
+<%end%>

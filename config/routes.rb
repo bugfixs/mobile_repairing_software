@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :inventories do
-    collection {post :import}
+    collection do
+      post :import
+      get :search_inventory
+      get :view_all
+    end
   end
   resources :inventory_types
   root 'home#index'
@@ -25,5 +29,11 @@ Rails.application.routes.draw do
       get :transfer
     end
   end
+
+  resources :reports do 
+    collection do
+    get :select, :report, :transfer
+  end
+end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
