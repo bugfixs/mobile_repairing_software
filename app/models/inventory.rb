@@ -12,9 +12,9 @@ class Inventory < ApplicationRecord
 
   def self.search_inventory(search)
     return if search.empty?
-    Inventory.where "concat_ws(description)like ? \
-    OR concat_ws(part_no)like ? \
-    OR concat_ws(branch) like ?", "#{search}%", "#{search}%", "#{search}%"
+    Inventory.where "concat_ws(' ',description,branch)like ? \
+    OR concat_ws(' ',branch,description)like ? \
+    OR part_no like ?", "#{search}%", "#{search}%", "#{search}%"
   end
   
   def self.to_csv(fields = column_names, options = {})
