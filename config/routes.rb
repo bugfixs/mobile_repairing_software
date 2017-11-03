@@ -25,11 +25,11 @@ Rails.application.routes.draw do
 
   resources :inventories do
     collection do
-    post :import
-    get  :load_item_data
-  end
-  member do
-  end
+      post :import
+      get  :load_item_data
+      get :search_inventory
+      get :view_all
+    end
   end
 
   resources :inventory_types
@@ -57,5 +57,11 @@ Rails.application.routes.draw do
       get :transfer
     end
   end
+
+  resources :reports do 
+    collection do
+    get :select, :report, :transfer
+  end
+end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

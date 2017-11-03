@@ -5,22 +5,35 @@ class InventoriesController < ApplicationController
   # GET /inventories.json
   def index
     @inventories = Inventory.all
-  if params[:search]
-     @inventories  = Inventory.search(params[:search]).order("created_at DESC")
-  else
-     @inventories  = Inventory.all.order("created_at DESC")
-  end
     respond_to do |format|
     format.html
+    format.json
+    format.js 
     format.csv { send_data @inventories.to_csv(['branch','part_no','description','total_stock_qty','total_stock_value','warehouse_stock_qty','engineer_stock_qty','location1',
       'location2','location3','map','status','latest_modify_date','inventory_type_id']) }
     format.xls { send_data @inventories.to_csv(col_sep: "\t") }
     end
   end
 
+
   def load_item_data
     @inventory = Inventory.find_by_id(params[:inventory_id]).present? ? Inventory.find(params[:inventory_id]) : Inventory.unscoped.find_by_id(params[:inventory_id])
     render :json => [ @inventory.description || "" , @inventory.branch, @inventory.map || ""]
+  end
+
+  def view_all
+    @inventories = Inventory.all
+  end
+
+    # find Inventory from database which we have type in text box
+  def search_inventory
+    if params[:search].present?
+    @inventories ||= Inventory.search_inventory(params[:search])
+    respond_to do |format|
+    format.js {render layout: false if request.xhr?}
+        # format.js {render :partial => 'search_all' ,:layout => false}
+    end
+    end
   end
 
 

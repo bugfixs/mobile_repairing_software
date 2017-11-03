@@ -4,3 +4,26 @@
     <li>Dashboard</li>
   </ul>
 </div>
+<!-- 
+<div class="row">
+  <div class="col-md-4"></div>
+<%= pie_chart Inventory.group(:description).count %> 
+    <h3> Items In Inventories Grand Total: = <%= @inventories.count%></h3>
+
+ </div>
+</div> -->
+
+  <div class="col-sm-4 col-sm-offset-1">
+       <h3>Total Transfers Per Day: = <%= @transfers.count%></h3>
+      <%= line_chart Transfer.group_by_day_of_week(:created_at, format: "%a").count %>
+</div>
+</div>
+
+
+ <div class="col-sm-4 col-sm-offset-1">
+    <h3>Total Inventory Type InventoryItems: = <%= InventoryType.all.count%></h3>
+<%= bar_chart InventoryType.all.map { |goal|
+    {name: goal.name, data: goal.inventories.group_by_week(:created_at).count}
+} %>
+</div>
+</div>

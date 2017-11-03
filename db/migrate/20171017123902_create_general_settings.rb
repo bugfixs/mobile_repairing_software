@@ -4,6 +4,8 @@ class CreateGeneralSettings < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :address
       t.string :contact
+      t.string :mobile_no
+      t.string :password
       t.string :email
 
       t.timestamps

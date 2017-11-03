@@ -17,16 +17,11 @@ gem 'escpos-image'
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem 'esc-pos'
-gem 'safe_attributes'
-gem 'rolify'
 gem 'prawn'
 gem 'prawn-table'
 gem 'will_paginate', '~> 3.1.0'
-gem 'cancancan'
 gem 'momentjs-rails'
 gem 'rolify'
-gem "responders"
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
@@ -51,7 +46,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'chartkick', '~> 1.2.4'
+gem "groupdate", github: "ankane/groupdate", branch: "rails5"
+gem 'active_median', '~> 0.1.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -73,6 +70,7 @@ group :development, :test do
   gem 'pry-byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'rails_12factor', group: :production
   gem 'selenium-webdriver'
 end
 

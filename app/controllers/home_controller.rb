@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-  	
+  	@transfers = Transfer.all
+  	@inventories = Inventory.all
   end
 end

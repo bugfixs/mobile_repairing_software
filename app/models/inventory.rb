@@ -4,10 +4,16 @@ class Inventory < ApplicationRecord
   has_many :inventory_items
   scope :shod, ->(id) { where(id: id).take }
   belongs_to :customer_detail, optional:true
+  validates :branch, presence:true, :case_sensitive => false
+  validates :description, presence:true, :case_sensitive => false
+  validates :part_no , presence:true, :case_sensitive => false
+  validates :inventory_type_id, presence:true
 
-
-  def self.search(search)
-    where("description LIKE ? OR part_no LIKE ? OR branch LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+  def self.search_inventory(search)
+    return if search.empty?
+    Inventory.where "concat_ws(' ',description,branch)like ? \
+    OR concat_ws(' ',branch,description)like ? \
+    OR part_no like ?", "#{search}%", "#{search}%", "#{search}%"
   end
   
   def self.to_csv(fields = column_names, options = {})
