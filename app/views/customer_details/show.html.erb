@@ -9,7 +9,7 @@
 <%= link_to 'Back', customer_details_path%><b> | </b>
 <%= link_to 'Download Customer PDF ', customer_detail_path(@customer_detail, format: 'pdf'),target: '_blank' %> <b> | </b>
 
-<%= link_to 'Download Engineer PDF', engineer_detail_path(@engineer_detail,format: 'pdf'),target: '_blank' %>
+<%= link_to 'Download Engineer PDF', engineer_detail_path(@customer_detail,format: 'pdf'),target: '_blank' %>
 
 
                         <div class="row form-group">
@@ -122,9 +122,15 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label for="text_input" class="label_height"><b>Accessory:<?</label>&nbsp;
+                                <label for="text_input" class="label_height"><b>Accessory:</label>&nbsp;
                                    
                                     <%= @customer_detail.accessory %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Complaint Type</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.compalint_type %>
                             </div>
 
                             <div class="col-md-4">
@@ -152,6 +158,24 @@
                             </div>
 
                             <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Testing Cost:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.testing_cost %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repair Cost:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.repair_cost %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Software Updation:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.software_testing_cost %>
+                            </div>
+
+                            <div class="col-md-4">
                                 <label for="text_input" class="label_height"><b>Symptom Code:</b></label>&nbsp;
                                    
                                     <%= @customer_detail.symptom_code %>
@@ -174,7 +198,6 @@
                                    
                                     <%= @customer_detail.status%>
                             </div>
-
 
 
   

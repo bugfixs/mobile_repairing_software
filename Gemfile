@@ -7,18 +7,21 @@ end
 
 #Devise for User Authentication
 gem 'devise'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'responders'
+gem 'selectize-rails'
 gem 'cancancan'
 gem 'pdfkit'
 gem 'escpos'
 gem 'escpos-image'
+gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 gem 'esc-pos'
 gem 'safe_attributes'
 gem 'rolify'
 gem 'prawn'
 gem 'prawn-table'
-
 gem 'will_paginate', '~> 3.1.0'
 gem 'cancancan'
 gem 'momentjs-rails'

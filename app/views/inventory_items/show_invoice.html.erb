@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+   width:100%;
+}
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+   font-size: 12px;
+}
+th, td {
+   padding: 2px;
+   text-align: left;
+}
+table#t01 tr:nth-child(even) {
+   background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+  background-color:#fff;
+}
+table#t01 th {
+   background-color: black;
+   color: white;
+}
+h5 {
+     display:inline;
+   }
+</style>
+</head>
+  <body>
+
+  <div id="heading">
+      <div class align ="right">
+        <i><b>Service Center: </b></i><%= GeneralSetting.last.name%>
+      </div>  
+      <div class align ="right">
+          <div class align="right"><i><b>Address: </b></i><%= GeneralSetting.last.address%>,
+          <div class align="right"><i><b>Contact No: </b></i><%= GeneralSetting.last.contact%></div>
+          <div class align="right"><i><b>Email Address: </b></i><%= GeneralSetting.last.email%>
+      </div>
+    </div>  
+      <hr>
+      <br/><h3><center><u>Acknowledgement of Service Request</u></center></h3><br/>
+      <div id="heading">
+      <div class align ="right">
+       <div class align="left"><i><b>Customer Name: </b></i><%= @customer_detail.customer_name%>
+       <div class align="left"><i><b>Bill No: </b></i><%= @customer_detail.bill_no%>
+      </div>  
+      <div class align ="right">
+          <div class align="left"><i><b>Address: </b></i><%= GeneralSetting.last.address%><br/>
+          <div class align="left"><i><b>Contact No: </b></i><%= GeneralSetting.last.contact%>
+      </div>
+    </div>  
+    <br>
+      <table class="table table-condensed table-bordered" style="margin-top: -15px; margin-bottom: 15px;">
+    <thead>
+        <tr>
+            <th style="font-size: 9px; background-color: #ccc; width: 75px;" colspan="10"><center>Details Of Spares and Services</center></th>
+        </tr>
+
+      <th><b><h5>Sr.No</h5></b></th>
+      <th><b><h5>Part No</h5></b></th>
+      <th><b><h5>Description</h5></b></th>
+      <th><b><h5>Branch Name</h5></b></th>
+      <th><b><h5>Taxable Value</h5></b></th>
+      <th><b><h5>SGST (9%)</h5></b></th>
+      <th><b><h5>CGST (9%)</h5></b></th>
+      <th><b><h5>Total GST (18%)</h5></b></th>
+      <th><b><h5>Grand Total</h5></b></th>
+        </tr>
+
+       <%total_amount=0%>
+       <%bal_amount=0%>
+  
+    <% @customer_detail.inventory_items.all.each_with_index do |s,i| %>
+
+      <tr>
+        <td><center><%= i+1 %></center></td> 
+        <td height="10"><center><%= s.inventory.part_no%><center></td>
+        <td><center><%= s.inventory.description%><center></td>
+        <td><center><%= s.inventory.branch%><center></td>
+        <td><center><%= s.inventory.map%><center></td>
+        <td><center><%= ((GeneralSetting.last.sgst.to_f)*(s.inventory.map.to_f)/100)%><center></td>
+        <td><center><%= ((GeneralSetting.last.cgst.to_f)*(s.inventory.map.to_f)/100)%><center></td>
+        <td><center><%= ((GeneralSetting.last.sgst.to_f)*(s.inventory.map.to_f)/100) + ((GeneralSetting.last.cgst.to_f)*(s.inventory.map.to_f)/100)%><center></td>
+        
+        
+        <td align="right"><%= dis = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(s.inventory.map.to_f))/100) + s.inventory.map.to_f%></td>
+        
+      </tr>
+      <% total_amount+= dis%>
+    <% end %>
+
+      <%if @customer_detail.repair_cost == 'Yes'%>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b><h5>Repairing Charges: <h5></b></td>
+          <td><%= @repair = GeneralSetting.last.repair_cost.to_f%></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)+((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)%><center></td>
+          <td><%= @repair_gst = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.repair_cost.to_f))/100) + GeneralSetting.last.repair_cost.to_f%></td>
+        </tr>
+      <%end%>
+
+      <%if @customer_detail.testing_cost == 'Yes'%>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b><h5>Testing Charges: </h5></b></td>
+           <td><%=@testing =  GeneralSetting.last.testing_cost.to_f%></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100) + ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100)%><center></td>
+          <td><%=@testing_gst = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.testing_cost.to_f))/100) + GeneralSetting.last.testing_cost.to_f%></td>
+        </tr>
+      <%end%>
+
+      <%if @customer_detail.software_testing_cost == 'Yes'%>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b><h5>Software Updation Charges: </h5></b></td>
+          <td><%= @software = GeneralSetting.last.software_testing_cost.to_f%></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)+((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)%><center></td>
+          <td><%= @software = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f))/100) + GeneralSetting.last.software_testing_cost.to_f%></td>
+        </tr>
+      <%end%>
+
+    </tbody>
+  </table>
+
+
+     <div class="col-md-6" align =" right">
+      <div class="pull-right">
+        <td><b><h5>Estimated Cost: </b><%= text_field_tag :amount, @total_estimate_cost =total_amount.to_f + @repair_gst.to_f + @testing_gst.to_f + @software.to_f%></h5></td></div>
+      </div>
+    </div>
+
+    <div class="col-md-6" align =" right">
+      <div class="pull-right">
+      <td><b><h5>Advanced Paid: </b><%= text_field_tag :amount, @customer_detail.advanced_paid.to_f %></h5></td></div>
+
+       
+      </div>
+    </div>
+
+    <div class="col-md-12" align= "right">
+      <div class="pull-right">
+       <td><b><h5>Advanced Paid: </b><%= text_field_tag :amount, @total_estimate_cost - @customer_detail.advanced_paid.to_f %></h5></td></div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h5>"I/We hereby certify that my/our registration certificate under the SGST/UTGST/CGST/IGST Act is in force on date on     which the the supply of goods/services specified in this tax invoices is made by me/us and that the transcation of supply covered by this TAX INVOICE has been affected by me/us and it shall be accounted for in the turnover of sale while filing of return and the due tax, If any, payable on the supply has been paid or shell be paid."</h5>
+
+    <h6><u>NOTE</u>: Unless otherwise stated, tax on the Invoice is not payable on reverse charged, Supplies under Reverse change to be be mentioned seperately.</h6>
+    
+    
+     
+  
+
+    
+  
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

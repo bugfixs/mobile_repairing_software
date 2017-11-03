@@ -27,7 +27,6 @@ class CreateCustomerDetails < ActiveRecord::Migration[5.1]
       t.string :symptom_code
       t.string :defect_code
       t.string :repair_code
-
       t.timestamps
     end
   end

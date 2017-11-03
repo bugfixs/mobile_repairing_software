@@ -5,7 +5,6 @@ class InventoriesController < ApplicationController
   # GET /inventories.json
   def index
     @inventories = Inventory.all
-
   if params[:search]
      @inventories  = Inventory.search(params[:search]).order("created_at DESC")
   else
@@ -18,6 +17,12 @@ class InventoriesController < ApplicationController
     format.xls { send_data @inventories.to_csv(col_sep: "\t") }
     end
   end
+
+  def load_item_data
+    @inventory = Inventory.find_by_id(params[:inventory_id]).present? ? Inventory.find(params[:inventory_id]) : Inventory.unscoped.find_by_id(params[:inventory_id])
+    render :json => [ @inventory.description || "" , @inventory.branch, @inventory.map || ""]
+  end
+
 
   def import
     Inventory.import(params[:file])

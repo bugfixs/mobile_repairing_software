@@ -1,5 +1,5 @@
-class EngineerDetail < ApplicationRecord
+class InventoryItem < ApplicationRecord
+  belongs_to :inventory
   belongs_to :customer_detail
-  belongs_to :employee
   scope :shod, ->(id) { where(id: id).take }
 end

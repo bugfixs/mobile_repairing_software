@@ -12,10 +12,12 @@
 //
 //= require jquery3
 //= require jquery.turbolinks
+//= require selectize
 //= require popper
 //= require jquery-ui
 //= require jquery.remotipart
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require bootstrap
 //= require turbolinks
 //= require_tree .

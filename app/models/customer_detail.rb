@@ -1,16 +1,13 @@
 class CustomerDetail < ApplicationRecord
 	validates :customer_name, presence: true
 	validates :customer_no, presence: true
-	validates :mobile_no, presence: true
-	validates :serial_no, presence: true
-	validates :repair_received, presence: true
-	validates :repair_completed, presence: true
-	validates :b2b_svc, presence: true
-	validates :condition_code, presence: true
-	validates :symptom_code, presence: true
-	validates :defect_code, presence: true
-	validates :repair_code, presence: true
+	validates :mobile_no, presence: true ,length: {maximum: 10 ,message: 'allows only Numbers'} 
+	validates :serial_no, presence: true	   
     belongs_to :employee
+    has_many :engineer_detail, dependent: :destroy
+    has_many :inventory
+    has_many :inventory_items
+    accepts_nested_attributes_for :inventory_items, :allow_destroy => true
     scope :shod, ->(id) { where(id: id).take }
     after_save :create_engineer_table
 
@@ -20,6 +17,11 @@ class CustomerDetail < ApplicationRecord
         out_of_warranty: self.out_of_warranty, repair_received:self.repair_received, repair_completed: self.repair_completed,
         good_delivered: self.good_delivered, return_by_date: self.return_by_date ,defect_description: self.defect_description,
         b2b_svc: self.b2b_svc, accessory: self.accessory, repair_description: self.repair_description,customer_detail_id: self.id, employee_id: self.employee.id,
-        condition_code: self.condition_code,  symptom_code: self.symptom_code, defect_code:self.defect_code, repair_code: self.repair_code)
+        condition_code: self.condition_code,  symptom_code: self.symptom_code, defect_code:self.defect_code, repair_code: self.repair_code, compalint_type: self.compalint_type,
+        status: self.status, estimated_cost: self.estimated_cost,balance_cost: self.balance_cost, advanced_paid: self.advanced_paid)
+    end
+
+    def self.search(search)
+     CustomerDetail.where('lower(customer_name) LIKE ?', "%#{search}%")
     end
 end

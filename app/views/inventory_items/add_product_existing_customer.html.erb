@@ -1,0 +1,98 @@
+
+<%= link_to 'Back', customer_details_path%>
+
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Customer Detail
+        </div>
+                    <div class="panel-body">
+
+
+
+
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Customer Name:</b></label>&nbsp;
+                                  
+                                    <%= @customer_detail.customer_name %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Date:</b></label>&nbsp;
+                                  
+                                    <%= @customer_detail.date %>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Customer No:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.customer_no %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Mobile No:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.mobile_no %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Model Name:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.model_name %>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Defect Description:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.defect_description%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Accessory:<?</label>&nbsp;
+                                   
+                                    <%= @customer_detail.accessory %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Engineer Name:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.employee.first_name %>
+                            </div>
+
+                             <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Status:</b></label>&nbsp;
+                                   <%if@customer_detail.status == 'Pending'%>
+                                      <font color="red"><%= @customer_detail.status %></font>
+                                    <%elsif @customer_detail.status == 'Work-Done'%>
+                                       <font color="green"><%= @customer_detail.status %></font>
+                                    <%else  @customer_detail.status == 'Good Delivered'%>
+                                       <font color="orange"><%= @customer_detail.status %></font>
+                                    <%end%>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Testing:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.testing_cost %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Repairing:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.repair_cost %>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="text_input" class="label_height"><b>Software Updation:</b></label>&nbsp;
+                                   
+                                    <%= @customer_detail.software_testing_cost %>
+                            </div>
+
+
+                            <br><br><br><br><br>
+                            <%= render 'inventory_items/item' %>
+
+</div>
+</div>
+</div>

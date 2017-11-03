@@ -1,17 +1,37 @@
 Rails.application.routes.draw do
+  
   resources :customer_details do
+    collection do 
+      get :existing_customer, :search_customer
+    end
     
     member do
-       get :customer_receipt
-       get :show_engineer_copy
+       get :customer_receipt, :show_engineer_copy, :inventory_item, :inventory
      end
+     resources :inventory_items
   end
+
+   resources :inventory_items do
+    collection do 
+      get :select_inventory,:select
+    end
+    member do
+      get :add_product_existing_customer, :show_invoice
+    end
+  end
+
 
   resources :engineer_details 
 
   resources :inventories do
-    collection {post :import}
+    collection do
+    post :import
+    get  :load_item_data
   end
+  member do
+  end
+  end
+
   resources :inventory_types
 
   root 'home#index'
@@ -24,6 +44,7 @@ Rails.application.routes.draw do
   	collection do
   		get :dashboard
   	end
+  end
 
   resources :inventory_transfers do
     collection do

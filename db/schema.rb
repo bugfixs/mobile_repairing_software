@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027075431) do
-
+ActiveRecord::Schema.define(version: 20171101065654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +50,17 @@ ActiveRecord::Schema.define(version: 20171027075431) do
     t.integer "balance_cost"
     t.integer "advanced_paid"
     t.string "status"
+    t.string "compalint_type"
+    t.bigint "general_setting_id"
+    t.integer "grand_total"
+    t.string "testing_cost"
+    t.string "repair_cost"
+    t.string "software_testing_cost"
+    t.string "gst"
+    t.bigint "employee_type_id"
     t.index ["employee_id"], name: "index_customer_details_on_employee_id"
+    t.index ["employee_type_id"], name: "index_customer_details_on_employee_type_id"
+    t.index ["general_setting_id"], name: "index_customer_details_on_general_setting_id"
   end
 
   create_table "employee_types", force: :cascade do |t|
@@ -105,9 +114,7 @@ ActiveRecord::Schema.define(version: 20171027075431) do
     t.bigint "customer_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "employee_id"
     t.index ["customer_detail_id"], name: "index_engineer_copies_on_customer_detail_id"
-    t.index ["employee_id"], name: "index_engineer_copies_on_employee_id"
   end
 
   create_table "engineer_details", force: :cascade do |t|
@@ -141,6 +148,12 @@ ActiveRecord::Schema.define(version: 20171027075431) do
     t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "compalint_type"
+    t.string "grand_total"
+    t.string "estimated_cost"
+    t.string "balance_cost"
+    t.string "advanced_paid"
+    t.string "status"
     t.index ["customer_detail_id"], name: "index_engineer_details_on_customer_detail_id"
     t.index ["employee_id"], name: "index_engineer_details_on_employee_id"
   end
@@ -152,6 +165,13 @@ ActiveRecord::Schema.define(version: 20171027075431) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "gst"
+    t.string "testing_cost"
+    t.string "repair_cost"
+    t.string "software_testing_cost"
+    t.decimal "sgst"
+    t.decimal "cgst"
+    t.decimal "igst"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -174,8 +194,22 @@ ActiveRecord::Schema.define(version: 20171027075431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "transfer_id"
+    t.bigint "customer_detail_id"
+    t.index ["customer_detail_id"], name: "index_inventories_on_customer_detail_id"
     t.index ["inventory_type_id"], name: "index_inventories_on_inventory_type_id"
     t.index ["transfer_id"], name: "index_inventories_on_transfer_id"
+  end
+
+  create_table "inventory_items", force: :cascade do |t|
+    t.string "name"
+    t.bigint "inventory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "customer_detail_id"
+    t.bigint "inventory_type_id"
+    t.index ["customer_detail_id"], name: "index_inventory_items_on_customer_detail_id"
+    t.index ["inventory_id"], name: "index_inventory_items_on_inventory_id"
+    t.index ["inventory_type_id"], name: "index_inventory_items_on_inventory_type_id"
   end
 
   create_table "inventory_logs", force: :cascade do |t|
@@ -241,15 +275,17 @@ ActiveRecord::Schema.define(version: 20171027075431) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "customer_details", "employee_types"
   add_foreign_key "customer_details", "employees"
+  add_foreign_key "customer_details", "general_settings"
   add_foreign_key "employees", "employee_types"
-
+  add_foreign_key "engineer_copies", "customer_details"
   add_foreign_key "engineer_details", "customer_details"
   add_foreign_key "engineer_details", "employees"
-
+  add_foreign_key "inventories", "customer_details"
   add_foreign_key "inventories", "inventory_types"
   add_foreign_key "inventories", "transfers"
+  add_foreign_key "inventory_items", "inventory_types"
   add_foreign_key "inventory_logs", "inventory_types"
   add_foreign_key "transfers", "inventory_types"
-
 end

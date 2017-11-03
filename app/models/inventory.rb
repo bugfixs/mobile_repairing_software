@@ -1,7 +1,9 @@
 class Inventory < ApplicationRecord
   belongs_to :inventory_type
   belongs_to :transfer, optional:true
+  has_many :inventory_items
   scope :shod, ->(id) { where(id: id).take }
+  belongs_to :customer_detail, optional:true
 
 
   def self.search(search)

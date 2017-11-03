@@ -77,13 +77,11 @@
 
                             <div class="col-md-2">
                                 <label for="text_input" class="label_height">Repair Received</label>
-                                    <span style="color:red">*</span>
                                     <%= f.text_field :repair_received, placeholder: "Repair Received", class: "form-control" %>
                             </div>
 
                             <div class="col-md-2">
                                 <label for="text_input" class="label_height">Repair Completed</label>
-                                    <span style="color:red">*</span>
                                       <%= f.text_field :repair_completed, placeholder: "Repair Completed", class: "form-control" %>
                             </div>
 
@@ -114,6 +112,7 @@
                                 <%= f.check_box :out_of_warranty, {}, "Yes", "No" %>
                             </div>
 
+                        
                                     <!-- </div> -->
                         
                             <div class="col-md-2">
@@ -123,13 +122,11 @@
 
                             <div class="col-md-2">
                                 <label for="text_input" class="label_height">Defect Description</label>
-                                     <span style="color:red">*</span>
                                         <%= f.text_field :defect_description, placeholder: "Defect Description", class: "form-control"%>
                            </div>
 
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">B2B SVC</label>
-                                     <span style="color:red">*</span>
                                         <%= f.text_field :b2b_svc, placeholder: "B2B SVC", class: "form-control"%>
                            </div>
 
@@ -150,48 +147,67 @@
 
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">Condition Code</label>
-                                     <span style="color:red">*</span>
                                         <%= f.text_field :condition_code, placeholder: "Condition Code", class: "form-control"%>
                            </div>
 
+                            <div class="col-md-2">
+                              <label><b>Complaint Type</b></label>
+                              <span style="color:red">*</span>
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="text_input" class="label_height">Testing</label>
+                              <%= f.check_box :testing_cost, {},"Yes", "No" %>
+                            </div>
+                            
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Repairing</label>
+                                <%= f.check_box :repair_cost, {},"Yes", "No"  %>
+                            </div>
+                                        
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Software Updation</label>
+                                <%= f.check_box :software_testing_cost, {},"Yes", "No" %>
+                            </div>
+
+
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">Symptom Code</label>
-                                <span style="color:red">*</span>
                                         <%= f.text_field :symptom_code, placeholder: "Symptom Code", class: "form-control"%>
                            </div>
 
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">Defect Code</label>
-                                     <span style="color:red">*</span>
                                         <%= f.text_field :defect_code, placeholder: "Defect Code", class: "form-control"%>
                            </div>
 
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">Repair Code</label>
-                                     <span style="color:red">*</span>
                                         <%= f.text_field :repair_code, placeholder: "Repair Code", class: "form-control"%>
                            </div>   
 
-                           <div class="col-md-2">
+                           <!-- <div class="col-md-2">
                                 <label for="text_input" class="label_height">Estimated Cost</label>
                                         <%= f.text_field :estimated_cost, placeholder: "Esti-Cost", id: "estimated_cost",class: "form-control"%>
-                           </div> 
+                           </div>  -->
 
                             <div class="col-md-2">
                                 <label for="text_input" class="label_height">Advance Payment</label>
                                         <%= f.text_field :advanced_paid, placeholder: "Advance Paid",id: "advanced_paid", class: "form-control"%>
                            </div>
 
-                           <div class="col-md-2">
+                           <!-- <div class="col-md-2">
                                 <label for="text_input" class="label_height">Balanced Cost</label>
                                         <%= f.text_field :balance_cost, placeholder: "Balance Cost",id: "balance_cost",readonly:true, class: "form-control"%>
-                           </div> 
+                           </div>  -->
 
                            <div class="col-md-2">
                                 <label for="text_input" class="label_height">Status</label>
                                     
                                         <%=f.select :status,["Pending","Work-Done","Good Delivered"],{prompt: 'Select Status'},class: "form-control" %>
-                           </div>                              
+                           </div>
+
+                                                      
                         </div>
 
 
