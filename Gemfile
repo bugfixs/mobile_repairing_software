@@ -7,11 +7,21 @@ end
 
 #Devise for User Authentication
 gem 'devise'
-gem 'will_paginate', '~> 3.1.0'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'responders'
+gem 'selectize-rails'
 gem 'cancancan'
+gem 'safe_attributes'
+gem 'escpos'
+gem 'escpos-image'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+gem 'prawn'
+gem 'prawn-table'
+gem 'will_paginate', '~> 3.1.0'
 gem 'momentjs-rails'
 gem 'rolify'
-gem "responders"
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
@@ -57,7 +67,7 @@ gem 'jquery-validation-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'rails_12factor', group: :production

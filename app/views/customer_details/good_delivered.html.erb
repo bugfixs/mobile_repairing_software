@@ -1,0 +1,60 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+       <div class="panel panel-primary">
+            <div class="panel-heading">View All Customers Complaints Details(Goods Delivered)
+        </div>
+            <div class="panel-body">
+             <p id="notice"><%= notice %></p>
+             <%= link_to 'New Complaint', new_customer_detail_path %>
+               <%= link_to 'Download Good Delivered', show_good_delivered_customer_details_path(format: 'pdf'),target: '_blank' %>
+
+
+             <%#= link_to 'PDF File', customer_details_path(format: 'pdf') %>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Bill No</th>
+                    <th>Customer name</th>
+                    <th>Date</th>
+                    <th>Customer no</th>
+                    <th>Mobile no</th>
+                    <th>Model name</th>
+                    <th>Accessory</th>
+                    <th>Engineer Name</th>
+                    <!-- th>Estimate Cost</th> -->
+                    <th>Advanced Paid</th>
+                    <!-- <th>Balance Cost</th> -->
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <% @customer_details.each do |customer_detail| %>
+                    <tr>
+                    <% if customer_detail.status  == 'Good Delivered'%>
+                      <td><%= customer_detail.bill_no %></td>
+                      <td><%= customer_detail.customer_name %></td>
+                      <td><%= customer_detail.date %></td>
+                      <td><%= customer_detail.customer_no %></td>
+                      <td><%= customer_detail.mobile_no %></td>
+                      <td><%= customer_detail.model_name %></td>
+                      <td><%= customer_detail.accessory %></td>
+                      <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
+                     <!--  <td><%= customer_detail.estimated_cost%></td> -->
+                      <td><%= customer_detail.advanced_paid %></td>
+                      <!-- <td><%= customer_detail.balance_cost%></td> -->
+                      <td><%= customer_detail.status%></td>
+                    </tr>
+                  <% end %>
+                   <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+                  
+           
+
+
+
+

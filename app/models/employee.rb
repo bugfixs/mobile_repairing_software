@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
   belongs_to :employee_type
   belongs_to :user, optional:true
+  has_many :customer_details
   after_save :create_user_account
   validates :employee_number, presence: true
   validates :contact, presence: true

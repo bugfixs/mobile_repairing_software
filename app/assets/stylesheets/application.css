@@ -12,6 +12,10 @@
  *
  *= require bootstrap-datepicker
  *= require font-awesome
+ *= require selectize
  *= require_tree .
  *= require_self
  */
+
+@import 'selectize'
+@import 'selectize.bootstrap3'

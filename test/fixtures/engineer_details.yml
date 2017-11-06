@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill_no: MyString
+  customer_name: MyString
+  date: 2017-10-26
+  address: MyString
+  customer_no: MyString
+  telephone_no: MyString
+  mobile_no: MyString
+  mobile_modal_name: MyString
+  purchase_date: 2017-10-26
+  serial_no: MyString
+  full_warranty: MyString
+  labor_only: MyString
+  parts_only: MyString
+  out_of_warranty: MyString
+  repair_received: MyString
+  repair_completed: MyString
+  good_delivered: MyString
+  return_by_date: 2017-10-26
+  defect_description: MyString
+  b2b_svc: MyString
+  accessory: MyString
+  repair_description: MyString
+  condition_code: MyString
+  symptom_code: MyString
+  defect_code: MyString
+  repair_code: MyString
+  customer_detail: one
+  employee: one
+
+two:
+  bill_no: MyString
+  customer_name: MyString
+  date: 2017-10-26
+  address: MyString
+  customer_no: MyString
+  telephone_no: MyString
+  mobile_no: MyString
+  mobile_modal_name: MyString
+  purchase_date: 2017-10-26
+  serial_no: MyString
+  full_warranty: MyString
+  labor_only: MyString
+  parts_only: MyString
+  out_of_warranty: MyString
+  repair_received: MyString
+  repair_completed: MyString
+  good_delivered: MyString
+  return_by_date: 2017-10-26
+  defect_description: MyString
+  b2b_svc: MyString
+  accessory: MyString
+  repair_description: MyString
+  condition_code: MyString
+  symptom_code: MyString
+  defect_code: MyString
+  repair_code: MyString
+  customer_detail: two
+  employee: two

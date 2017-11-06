@@ -5,7 +5,6 @@ class InventoriesController < ApplicationController
   # GET /inventories.json
   def index
     @inventories = Inventory.all
-    params[:search] ?  @inventories  = Inventory.search(params[:search]).order("created_at DESC") :  @inventories  = Inventory.all.order("created_at DESC")
     respond_to do |format|
     format.html
     format.json
@@ -14,6 +13,12 @@ class InventoriesController < ApplicationController
       'location2','location3','map','status','latest_modify_date','inventory_type_id']) }
     format.xls { send_data @inventories.to_csv(col_sep: "\t") }
     end
+  end
+
+
+  def load_item_data
+    @inventory = Inventory.find_by_id(params[:inventory_id]).present? ? Inventory.find(params[:inventory_id]) : Inventory.unscoped.find_by_id(params[:inventory_id])
+    render :json => [ @inventory.description || "" , @inventory.branch, @inventory.map || ""]
   end
 
   def view_all

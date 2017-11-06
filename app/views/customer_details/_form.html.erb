@@ -1,0 +1,231 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Fill Up Customer Complaints
+        </div>
+            <%= form_with(model: customer_detail, local: true) do |f| %>
+              <% if customer_detail.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(customer_detail.errors.count, "error") %> prohibited this customer_detail from being saved:</h2>
+                <ul>
+                  <% customer_detail.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+                </div>
+              <% end %>
+                    <div class="panel-body">
+                        <div class="row form-group">
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Bill No</label>
+                                   <%= f.text_field :bill_no, placeholder: "Bill Number", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Customer Name</label>
+                                    <span style="color:red">*</span>
+                                    <%= f.text_field :customer_name, placeholder: "Name", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Date</label>
+                                    <%=f.date_field :date,:value => Time.now.strftime('%Y-%m-%d'),class: "form-control datepicker"%>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Address</label>
+                                        <%= f.text_field :address, placeholder: "Customer Address", class: "form-control"%>
+                           </div>
+                       
+
+                   
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Customer No</label>
+                                    <span style="color:red">*</span>
+                                    <%= f.text_field :customer_no, placeholder: "Number", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Telephone No</label>
+                                    <%= f.text_field :telephone_no, placeholder: "Telephone No", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Mobile No</label>
+                                     <span style="color:red">*</span>
+                                        <%= f.text_field :mobile_no, placeholder: "Mobile No", class: "form-control"%>
+                           </div>
+                      
+
+                        
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Model Name</label>
+                                    <%= f.text_field :mobile_modal_name, placeholder: "Model Name", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Purchase Date</label>
+                                     <%=f.date_field :purchase_date,:value => Time.now.strftime('%Y-%m-%d'),class: "form-control datepicker"%>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Serial No</label>
+                                     <span style="color:red">*</span>
+                                        <%= f.text_field :serial_no, placeholder: "Serial No", class: "form-control"%>
+                           </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Repair Received</label>
+                                    <%= f.text_field :repair_received, placeholder: "Repair Received", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Repair Completed</label>
+                                      <%= f.text_field :repair_completed, placeholder: "Repair Completed", class: "form-control" %>
+                            </div>
+
+                            
+
+                            <div class="col-md-2">
+                              <label><b>Warranty</b></label>
+                              <span style="color:red">*</span>
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="text_input" class="label_height">Full Warranty</label>
+                              <%= f.check_box :full_warranty, {},"Yes", "No" %>
+                            </div>
+                            
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Labor Only</label>
+                                <%= f.check_box :labor_only, {},"Yes", "No"  %>
+                            </div>
+                                        
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Parts Only</label>
+                                <%= f.check_box :parts_only, {},"Yes", "No" %>
+                            </div>
+
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Out Of Warranty</label>
+                                <%= f.check_box :out_of_warranty, {}, "Yes", "No" %>
+                            </div>
+
+                        
+                                    <!-- </div> -->
+                        
+                            <div class="col-md-2">
+                              <label for="text_input" class="label_height">Return By Date</label>
+                                <%=f.date_field :return_by_date,:value => Time.now.strftime('%Y-%m-%d'),class: "form-control datepicker"%>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Defect Description</label>
+                                        <%= f.text_field :defect_description, placeholder: "Defect Description", class: "form-control"%>
+                           </div>
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">B2B SVC</label>
+                                        <%= f.text_field :b2b_svc, placeholder: "B2B SVC", class: "form-control"%>
+                           </div>
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Accessory</label>
+                                     <span style="color:red">*</span>
+                                        <%= f.text_field :accessory, placeholder: "Accessory", class: "form-control"%>
+                           </div>
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Select Engineer</label>
+                                  <%=  f.select :employee_id,Employee.all.collect{|e| [e.first_name+" - "+e.last_name, e.id]},{prompt:true}, placeholder: "Employee", class: "form-control"%>
+                           </div>
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Repair Description</label>
+                                        <%= f.text_field :repair_description, placeholder: "Repair Description", class: "form-control"%>
+                           </div>
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Condition Code</label>
+                                        <%= f.text_field :condition_code, placeholder: "Condition Code", class: "form-control"%>
+                           </div>
+
+                            <div class="col-md-2">
+                              <label><b>Complaint Type</b></label>
+                              <span style="color:red">*</span>
+                            </div>
+
+                            <div class="col-md-2">
+                              <label for="text_input" class="label_height">Testing</label>
+                              <%= f.check_box :testing_cost, {},"Yes", "No" %>
+                            </div>
+                            
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Repairing</label>
+                                <%= f.check_box :repair_cost, {},"Yes", "No"  %>
+                            </div>
+                                        
+                            <div class="col-md-2">  
+                              <label for="text_input" class="label_height">Software Updation</label>
+                                <%= f.check_box :software_testing_cost, {},"Yes", "No" %>
+                            </div>
+
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Symptom Code</label>
+                                        <%= f.text_field :symptom_code, placeholder: "Symptom Code", class: "form-control"%>
+                           </div>
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Defect Code</label>
+                                        <%= f.text_field :defect_code, placeholder: "Defect Code", class: "form-control"%>
+                           </div>
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Repair Code</label>
+                                        <%= f.text_field :repair_code, placeholder: "Repair Code", class: "form-control"%>
+                           </div>   
+
+                           <!-- <div class="col-md-2">
+                                <label for="text_input" class="label_height">Estimated Cost</label>
+                                        <%= f.text_field :estimated_cost, placeholder: "Esti-Cost", id: "estimated_cost",class: "form-control"%>
+                           </div>  -->
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Advance Payment</label>
+                                        <%= f.text_field :advanced_paid, placeholder: "Advance Paid",id: "advanced_paid", class: "form-control"%>
+                           </div>
+
+                           <!-- <div class="col-md-2">
+                                <label for="text_input" class="label_height">Balanced Cost</label>
+                                        <%= f.text_field :balance_cost, placeholder: "Balance Cost",id: "balance_cost",readonly:true, class: "form-control"%>
+                           </div>  -->
+
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Status</label>
+                                    
+                                        <%=f.select :status,["Pending","Work-Done","Good Delivered"],{prompt: 'Select Status'},class: "form-control" %>
+                           </div>
+
+                                                      
+                        </div>
+
+
+
+                        <div class="col-sm-4 col-sm-offset-5 input_success">
+                                         <%= f.submit "Create Complain", class: 'btn btn-success btn-sm'%>
+                        </div>
+                 
+</div>
+ <% end %>
+
+
+ <script type='text/javascript'>
+ $(document).on("keyup", "#estimated_cost, #advanced_paid", function() {
+  var estimated_cost = $("#estimated_cost").val();
+  var advanced_paid = $("#advanced_paid").val();
+  $("#balance_cost").val($('#estimated_cost').val() - $('#advanced_paid').val());
+});
+</script>
+
+

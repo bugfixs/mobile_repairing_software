@@ -1,14 +1,13 @@
 class Inventory < ApplicationRecord
   belongs_to :inventory_type
   belongs_to :transfer, optional:true
+  has_many :inventory_items
   scope :shod, ->(id) { where(id: id).take }
+  belongs_to :customer_detail, optional:true
   validates :branch, presence:true, :case_sensitive => false
   validates :description, presence:true, :case_sensitive => false
   validates :part_no , presence:true, :case_sensitive => false
   validates :inventory_type_id, presence:true
-  # def self.search(search)
-  #   where("description LIKE ? OR part_no LIKE ? OR branch LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
-  # end
 
   def self.search_inventory(search)
     return if search.empty?
