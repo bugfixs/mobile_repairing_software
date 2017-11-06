@@ -1,13 +1,16 @@
 <div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
                              data-wow-delay="0.2s">
        <div class="panel panel-primary">
-            <div class="panel-heading">View All Customers Complaints Details
+            <div class="panel-heading">View All Customers Complaints Details(Work-Done)
         </div>
+
             <div class="panel-body">
              <p id="notice"><%= notice %></p>
              <%= link_to 'New Complaint', new_customer_detail_path %>
-                <b><%= link_to "Export CSV", customer_details_path(format: "csv") %></b> |
-               <b><%= link_to "Excel", customer_details_path(format: "xls") %></b>
+
+               <%= link_to 'Download Work Done', show_work_done_customer_details_path(format: 'pdf'),target: '_blank' %>
+
+
              <%#= link_to 'PDF File', customer_details_path(format: 'pdf') %>
               <table class="table table-bordered">
                 <thead>
@@ -24,13 +27,13 @@
                     <th>Advanced Paid</th>
                     <!-- <th>Balance Cost</th> -->
                     <th>Status</th>
-                    <th>Actions</th>
                   </tr>
                 </thead>
                 
                 <tbody>
                   <% @customer_details.each do |customer_detail| %>
                     <tr>
+                    <% if customer_detail.status  == 'Work-Done'%>
                       <td><%= customer_detail.bill_no %></td>
                       <td><%= customer_detail.customer_name %></td>
                       <td><%= customer_detail.date %></td>
@@ -43,12 +46,9 @@
                       <td><%= customer_detail.advanced_paid %></td>
                       <!-- <td><%= customer_detail.balance_cost%></td> -->
                       <td><%= customer_detail.status%></td>
-                      <td><%= link_to 'Show', customer_detail,class: "btn btn-warning btn-sm" %></td>
-                      <td><%= link_to 'Staus Update', edit_customer_detail_path(customer_detail),class: "btn btn-success btn-sm" %></td>
-                      <td><%= link_to 'Destroy', customer_detail, method: :delete, data: { confirm: 'Are you sure you want to delete?' },class: "btn btn-danger btn-sm"  %></td>
-                      <td><%= link_to 'Add Items', inventory_item_path(customer_detail),class: "btn btn-warning btn-sm" %></td>
                     </tr>
                   <% end %>
+                   <% end %>
                 </tbody>
               </table>
             </div>

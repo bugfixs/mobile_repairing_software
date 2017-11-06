@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+   width:100%;
+}
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+   font-size: 12px;
+}
+th, td {
+   padding: 2px;
+   text-align: left;
+}
+table#t01 tr:nth-child(even) {
+   background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+  background-color:#fff;
+}
+table#t01 th {
+   background-color: black;
+   color: white;
+}
+h5 {
+     display:inline;
+   }
+</style>
+</head>
+  <body>
+
+  <div id="heading">
+      <div class align ="right">
+        <i><b>Service Center: </b></i><%= GeneralSetting.last.name%>
+      </div>  
+      <div class align ="right">
+          <div class align="right"><i><b>Address: </b></i><%= GeneralSetting.last.address%>,
+          <div class align="right"><i><b>Contact No: </b></i><%= GeneralSetting.last.contact%></div>
+          <div class align="right"><i><b>Email Address: </b></i><%= GeneralSetting.last.email%>
+      </div>
+    </div>  
+      <hr>
+    
+      <div class align ="right">
+          <div class align="left"><i><b>Address: </b></i><%= GeneralSetting.last.address%><br/>
+          <div class align="left"><i><b>Contact No: </b></i><%= GeneralSetting.last.contact%>
+      </div>
+    </div>  
+    <br>
+      <table class="table table-condensed table-bordered" style="margin-top: -15px; margin-bottom: 15px;">
+    <thead>
+        <tr>
+            <th style="font-size: 9px; background-color: #ccc; width: 75px;" colspan="10"><center>All Report</center></th>
+        </tr>
+
+                  <tr>
+                    <th>Bill No</th>
+                    <th>Customer name</th>
+                    <th>Date</th>
+                    <th>Customer no</th>
+                    <th>Mobile no</th>
+                    <th>Model name</th>
+                    <th>Accessory</th>
+                    <th>Engineer Name</th>
+                    <!-- th>Estimate Cost</th> -->
+                    <th>Advanced Paid</th>
+                    <!-- <th>Balance Cost</th> -->
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <% @customer_details.each do |customer_detail| %>
+                    <tr>
+                    <% if customer_detail.status == 'Pending' && @status == 'Pending'%>
+                      <td><%= customer_detail.bill_no %></td>
+                      <td><%= customer_detail.customer_name %></td>
+                      <td><%= customer_detail.date %></td>
+                      <td><%= customer_detail.customer_no %></td>
+                      <td><%= customer_detail.mobile_no %></td>
+                      <td><%= customer_detail.model_name %></td>
+                      <td><%= customer_detail.accessory %></td>
+                      <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
+                     <!--  <td><%= customer_detail.estimated_cost%></td> -->
+                      <td><%= customer_detail.advanced_paid %></td>
+                      <!-- <td><%= customer_detail.balance_cost%></td> -->
+                      <td><%= customer_detail.status%></td>
+                    </tr>
+                  <% end %>
+                  <% if customer_detail.status == 'Work-Done' && @status == 'Work-Done' %>
+                      <td><%= customer_detail.bill_no %></td>
+                      <td><%= customer_detail.customer_name %></td>
+                      <td><%= customer_detail.date %></td>
+                      <td><%= customer_detail.customer_no %></td>
+                      <td><%= customer_detail.mobile_no %></td>
+                      <td><%= customer_detail.model_name %></td>
+                      <td><%= customer_detail.accessory %></td>
+                      <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
+                     <!--  <td><%= customer_detail.estimated_cost%></td> -->
+                      <td><%= customer_detail.advanced_paid %></td>
+                      <!-- <td><%= customer_detail.balance_cost%></td> -->
+                      <td><%= customer_detail.status%></td>
+                    </tr>
+                  <% end %>
+                  <% if customer_detail.status == 'Good Delivered' && @status == 'Good Delivered' %>
+                      <td><%= customer_detail.bill_no %></td>
+                      <td><%= customer_detail.customer_name %></td>
+                      <td><%= customer_detail.date %></td>
+                      <td><%= customer_detail.customer_no %></td>
+                      <td><%= customer_detail.mobile_no %></td>
+                      <td><%= customer_detail.model_name %></td>
+                      <td><%= customer_detail.accessory %></td>
+                      <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
+                     <!--  <td><%= customer_detail.estimated_cost%></td> -->
+                      <td><%= customer_detail.advanced_paid %></td>
+                      <!-- <td><%= customer_detail.balance_cost%></td> -->
+                      <td><%= customer_detail.status%></td>
+                    </tr>
+                  <% end %>
+                     <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+                  
+           </body>
+           </html>
+
+
+
+

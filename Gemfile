@@ -11,7 +11,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'responders'
 gem 'selectize-rails'
 gem 'cancancan'
-gem 'pdfkit'
+gem 'safe_attributes'
 gem 'escpos'
 gem 'escpos-image'
 gem 'pdfkit'
