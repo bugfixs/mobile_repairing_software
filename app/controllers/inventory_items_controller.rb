@@ -1,34 +1,5 @@
 class InventoryItemsController < ApplicationController
   
-  def show
-   @customer_detail = CustomerDetail.shod(params[:id])
-    @item = @customer_detail.inventory_items
-    # @inv_item = InventoryItem.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = InvoicePdf.new(@customer_detail,:page_size => '841.89 x 1190.55')
-        send_data pdf.render, filename: 'invoice_pdf.pdf', type: 'application/pdf', disposition: "inline"
-      end
-    end
-  end
-
-  def show_invoice
-    @customer_detail = CustomerDetail.shod(params[:id])
-    @item = @customer_detail.inventory_items
-    respond_to do |format|
-     format.html
-     format.pdf do
-     render pdf: "show_invoice",
-     
-     template: "inventory_items/show_invoice.html.erb",
-     layout: false
-   end
-  end
-   
-  end
-
-
   def create
     @customer_detail = CustomerDetail.find(params[:customer_detail_id])
     @item = @customer_detail.inventory_items.create(item)
@@ -48,6 +19,34 @@ class InventoryItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to inventory_item_path(@customer_detail), notice: 'Successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+    def show
+    
+   @customer_detail = CustomerDetail.shod(params[:id])
+    @item = @customer_detail.inventory_items
+    # @inv_item = InventoryItem.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = InvoicePdf.new(@customer_detail,:page_size => '841.89 x 1190.55')
+        send_data pdf.render, filename: 'invoice_pdf.pdf', type: 'application/pdf', disposition: "inline"
+      end
+    end
+  end
+
+  def show_invoice
+    @customer_detail = CustomerDetail.shod(params[:id])
+    @item = @customer_detail.inventory_items
+    respond_to do |format|
+     format.html
+     format.pdf do
+      render pdf: "show_invoice",
+     
+      template: "inventory_items/show_invoice.html.erb",
+      layout: false
+     end
     end
   end
 

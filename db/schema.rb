@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101065654) do
+ActiveRecord::Schema.define(version: 20171107053028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,12 +35,9 @@ ActiveRecord::Schema.define(version: 20171101065654) do
     t.string "good_delivered"
     t.date "return_by_date"
     t.string "defect_description"
-    t.string "b2b_svc"
     t.string "accessory"
     t.string "repair_description"
     t.string "condition_code"
-    t.string "symptom_code"
-    t.string "defect_code"
     t.string "repair_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,6 +55,8 @@ ActiveRecord::Schema.define(version: 20171101065654) do
     t.string "software_testing_cost"
     t.string "gst"
     t.bigint "employee_type_id"
+    t.string "imei_1"
+    t.string "imei_2"
     t.index ["employee_id"], name: "index_customer_details_on_employee_id"
     t.index ["employee_type_id"], name: "index_customer_details_on_employee_type_id"
     t.index ["general_setting_id"], name: "index_customer_details_on_general_setting_id"
@@ -137,12 +136,9 @@ ActiveRecord::Schema.define(version: 20171101065654) do
     t.string "good_delivered"
     t.date "return_by_date"
     t.string "defect_description"
-    t.string "b2b_svc"
     t.string "accessory"
     t.string "repair_description"
     t.string "condition_code"
-    t.string "symptom_code"
-    t.string "defect_code"
     t.string "repair_code"
     t.bigint "customer_detail_id"
     t.bigint "employee_id"
@@ -154,6 +150,8 @@ ActiveRecord::Schema.define(version: 20171101065654) do
     t.string "balance_cost"
     t.string "advanced_paid"
     t.string "status"
+    t.string "imei_1"
+    t.string "imei_2"
     t.index ["customer_detail_id"], name: "index_engineer_details_on_customer_detail_id"
     t.index ["employee_id"], name: "index_engineer_details_on_employee_id"
   end

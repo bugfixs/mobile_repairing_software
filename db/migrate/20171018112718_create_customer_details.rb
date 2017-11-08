@@ -20,12 +20,9 @@ class CreateCustomerDetails < ActiveRecord::Migration[5.1]
       t.string :good_delivered
       t.date :return_by_date
       t.string :defect_description
-      t.string :b2b_svc
       t.string :accessory
       t.string :repair_description
       t.string :condition_code
-      t.string :symptom_code
-      t.string :defect_code
       t.string :repair_code
       t.timestamps
     end

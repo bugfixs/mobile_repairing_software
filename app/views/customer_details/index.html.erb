@@ -37,14 +37,12 @@
                       <td><%= customer_detail.model_name %></td>
                       <td><%= customer_detail.accessory %></td>
                       <td><%= customer_detail.employee.first_name if customer_detail.employee %></td>
-                     <!--  <td><%= customer_detail.estimated_cost%></td> -->
                       <td><%= customer_detail.advanced_paid %></td>
-                      <!-- <td><%= customer_detail.balance_cost%></td> -->
                       <td><%= customer_detail.status%></td>
                       <td><%= link_to 'Show', customer_detail,class: "btn btn-warning btn-sm" %></td>
-                      <td><%= link_to 'Staus Update', edit_customer_detail_path(customer_detail),class: "btn btn-success btn-sm" %></td>
+                      <td><%= link_to 'Edit Profile', edit_customer_detail_path(customer_detail),class: "btn btn-success btn-sm" %></td>
                       <td><%= link_to 'Destroy', customer_detail, method: :delete, data: { confirm: 'Are you sure you want to delete?' },class: "btn btn-danger btn-sm"  %></td>
-                      <td><%= link_to 'Add Items', inventory_item_path(customer_detail),class: "btn btn-warning btn-sm" %></td>
+                      <!-- <td><%= link_to 'Add Items', inventory_item_path(customer_detail),class: "btn btn-warning btn-sm" %></td> -->
                     </tr>
                   <% end %>
                 </tbody>

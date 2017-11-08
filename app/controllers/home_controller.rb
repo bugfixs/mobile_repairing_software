@@ -8,5 +8,6 @@ class HomeController < ApplicationController
   def dashboard
   	@transfers = Transfer.all
   	@inventories = Inventory.all
+  	@customer_details = CustomerDetail.all
   end
 end

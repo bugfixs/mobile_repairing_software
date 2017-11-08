@@ -17,6 +17,7 @@
             <th>Customer no</th>
             <th>Mobile no</th>
             <th>Address</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -26,7 +27,8 @@
            <td> <%= user.customer_no %></td>
            <td> <%= user.mobile_no%></td>
            <td> <%= user.address%></td>
-           <td><%=link_to "Add Products", add_product_existing_customer_inventory_item_path(user)%>
+           <td><%=link_to "Click To Add Items", inventory_item_path(user),class: "btn btn-warning btn-sm"%></td>
+            
          </tr>
 
          <% end %>

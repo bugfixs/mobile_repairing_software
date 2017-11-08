@@ -1,5 +1,11 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Search Customers
+        </div>
+
 <div class="row">
-<div class="col-sm-4 col-sm-offset-1">
+<div class="col-sm-6 col-sm-offset-4">
     <div class="form-group">
    <%= form_for :customer_detail, method: :get,remote:true,id: 'search' do |f|%>
        <b>Search User:</b>
@@ -11,9 +17,9 @@
   </div>
 </div>
 
-<div id ="search_customer">
+<div id ="search_cust">
 
-
+</div>
  <script type="text/javascript">
   $("#search").on("change", function() {
     var search;
@@ -24,7 +30,7 @@
       data: {search: Item },
       dataType: "script"
      }).done(function (data) {
-     console.log(data);
+     $('#search').html(data);
     });
   });
 </script>

@@ -35,7 +35,8 @@
       
         <div class="col-sm-12 col-sm-offset-3 input_success">
           <%= c.submit "Add",class: "btn btn-warning btn-md" %>
-          <%=link_to "Finish",customer_details_path,class: "btn btn-success btn-lg"%>
+          <%=link_to "Back",customer_details_path,class: "btn btn-success btn-md"%>
+          
         </div>
         
         
@@ -130,56 +131,50 @@
     </tbody>
   </table>
 
-  <div class="col-md-11" align= "right">
-      <div class="pull-right">
-        <b>Estimated Cost: </b><%= text_field_tag :amount, @total_estimate_cost =total_amount.to_f + @repair_gst.to_f + @testing_gst.to_f + @software.to_f%></div>
+      <div class="col-md-11" align= "center">
+        <%= link_to 'Save & Download Invoice', show_invoice_inventory_item_path(@customer_detail,format: 'pdf'),target: '_blank',class: "btn btn-default btn-md" %>
+        <%=link_to "Save & Continue Without Adding Items", without_adding_items_customer_detail_path(@customer_detail),class: "btn btn-default btn-md"%>
+      </div>
+
+      <div class="col-md-11" align= "right">
+        <div class="pull-right">
+          <b>Estimated Cost: </b><%= text_field_tag :amount, @total_estimate_cost = total_amount.to_f + @repair_gst.to_f + @testing_gst.to_f + @software.to_f,readonly:true%>
+            <%@customer_detail = CustomerDetail.find(params[:id])%>
+            <% @customer_detail.update(:estimated_cost => @total_estimate_cost) %>
+        </div>
+      </div>
+
+      <br><br><br><br><br>
+
+      <div class="col-md-11" align= "right">
+        <div class="pull-right">
+          <b>Advanced Paid: </b><%= text_field_tag :amount_a,@customer_detail.advanced_paid.to_f ,readonly:true%>
+        </div>
+      </div>
+
+      <br><br><br>
+
+      <div class="col-md-11" align= "right">
+        <div class="pull-right"></div>
+        
+          <b>Balanced Payment: </b><%=text_field_tag :amount_b, @balanced_cost = @total_estimate_cost - @customer_detail.advanced_paid.to_f,readonly:true%>
+           <%@customer_detail = CustomerDetail.find(params[:id])%>
+           <% @customer_detail.update(:balance_cost => @balanced_cost) %>
+        </div>
       </div>
     </div>
+   <%end%>
+  </div>
+ </div>
+</div>
+</div>
 
-    <div class="col-md-11" align= "right">
-      <div class="pull-right">
-        <b>Advanced Paid: </b><%=@customer_detail.advanced_paid.to_f %></div>
-      </div>
-    </div>
-
-    <div class="col-md-11" align= "right">
-      <div class="pull-right">
-        <b>Balanced Payment: </b><%=@total_estimate_cost - @customer_detail.advanced_paid.to_f%></div>
-      </div>
-    </div>
-    
-    
-     
-  
-
-    
-  
-</div>
-<%end%>
-</div>
-</div>
-</div>
-</div>
 <div id="select_div"></div> 
 
 
 
  <script type="text/javascript">
-  $("#inventory_item_inventory_id").on("change", function() {
-    var inventory_id;
-    Item = $(this).val();
-    $.ajax({
-      url: "/inventories/load_item_data",
-      type: "GET",
-      data: {inventory_id: Item },
-      dataType: "json"
-     }).done(function (data) {
-     console.log(data);
-      $("#description").val(data[0]);
-      $("#branch").val(data[1]);
-      $("#map").val(data[2]);
-    });
-  });
+  $("#inventory_item_inventory_id").selectize();
 </script>
 
 

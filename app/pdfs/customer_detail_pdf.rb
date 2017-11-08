@@ -39,14 +39,14 @@ class CustomerDetailPdf < Prawn::Document
 
 
 	def customer_detail
-	    data = [["Customer Name", @customer_detail.customer_name, "Request Date",@customer_detail.date, "Address", @customer_detail.address],
-                 ["Customer No", @customer_detail.customer_no ,"Telephone No", @customer_detail.telephone_no,"Mobile No", @customer_detail.mobile_no],
-                 ["Model Name", @customer_detail.mobile_modal_name, "Purchase Date", @customer_detail.purchase_date, "Serial No", @customer_detail.serial_no],
-                 ["Full warranty", @customer_detail.full_warranty, "Labor only", @customer_detail.labor_only, "Parts only", @customer_detail.parts_only],
-                 ["Out of warranty", @customer_detail.out_of_warranty, "Repair Received", @customer_detail.repair_received, "Repair Completed", @customer_detail.repair_completed],
-                 ["Accessory", @customer_detail.accessory, "Engineer Name", @customer_detail.employee.first_name+"-"+@customer_detail.employee.last_name, "Repair Completed", @customer_detail.repair_completed],
-                 ["Repair Description", @customer_detail.repair_description, "Condition Code", @customer_detail.condition_code, "Symptom Code", @customer_detail.symptom_code],
-                 ["Defect Code", @customer_detail.defect_code, "Repair Code", @customer_detail.repair_code]]
+	    data = [["Customer Name:", @customer_detail.customer_name, "Request Date:",@customer_detail.date, "Address:", @customer_detail.address],
+                 ["Customer No:", @customer_detail.customer_no ,"Telephone No:", @customer_detail.telephone_no,"Mobile No:", @customer_detail.mobile_no],
+                 ["Model Name:", @customer_detail.mobile_modal_name, "Purchase Date:", @customer_detail.purchase_date, "Serial No:", @customer_detail.serial_no],
+                 ["Full warranty:", @customer_detail.full_warranty, "Labor only:", @customer_detail.labor_only, "Parts only:", @customer_detail.parts_only],
+                 ["Out of warranty:", @customer_detail.out_of_warranty, "Repair Received:", @customer_detail.repair_received, "Repair Completed:", @customer_detail.repair_completed],
+                 ["Accessory:", @customer_detail.accessory, "Engineer Name:", @customer_detail.employee.first_name+"-"+@customer_detail.employee.last_name, "Repair Completed:", @customer_detail.repair_completed],
+                 ["Repair Description:", @customer_detail.repair_description, "Condition Code:", @customer_detail.condition_code],
+                 ["Repair Code:", @customer_detail.repair_code]]
     end
 
 	

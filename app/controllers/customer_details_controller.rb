@@ -8,7 +8,52 @@ class CustomerDetailsController < ApplicationController
   end
 
   def search_customer
-    @customer_details = CustomerDetail.search(params[:search])
+    if params[:search].present?
+      @customer_details = CustomerDetail.search_customer_search(params[:search])
+      respond_to do |format|
+        format.js{render layout: false if request.xhr?}
+      end
+    end
+  end
+
+  def status
+    @customer_detail ||= CustomerDetail.find(params[:id])
+  end
+
+  def invoice
+    @customer_detail = CustomerDetail.shod(params[:id])
+    @item = @customer_detail.inventory_items
+    respond_to do |format|
+     format.html
+     format.pdf do
+      render pdf: "invoice",
+     
+      template: "customer_details/invoice.html.erb",
+      layout: false
+     end
+    end
+  end
+
+  def search_customer_status
+    @customer_details = CustomerDetail.all
+  end
+
+  def customer_status
+     if params[:search].present?
+      @customer_details = CustomerDetail.search(params[:search])
+      respond_to do |format|
+        format.js{render layout: false if request.xhr?}
+      end
+    end
+  end
+
+  def search_customer_status
+     if params[:search].present?
+      @customer_details = CustomerDetail.search_customer_search(params[:search])
+      respond_to do |format|
+        format.js{render layout: false if request.xhr?}
+      end
+    end
   end
     
   
@@ -36,6 +81,10 @@ class CustomerDetailsController < ApplicationController
     end
   end
 
+  def without_adding_items
+    @customer_detail = CustomerDetail.find(params[:id])
+  end
+
   # GET /customer_details/new
   def new
     @customer_detail = CustomerDetail.new
@@ -44,6 +93,24 @@ class CustomerDetailsController < ApplicationController
   # GET /customer_details/1/edit
   def edit
   end
+
+  def edit_status
+    @customer_detail = CustomerDetail.find(params[:id])
+  end
+
+  def update_status
+   @customer_detail = CustomerDetail.find(params[:id])
+    respond_to do |format|
+      if @customer_detail.update(customer_detail_params)
+        format.html { redirect_to edit_status_customer_detail_path, notice: 'Status was successfully updated.' }
+        format.json { render :edit_status, status: :ok, location: @customer_detail }
+      else
+        format.html { render :edit_status }
+        format.json { render json: @customer_detail.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # POST /customer_details
   # POST /customer_details.json
@@ -93,6 +160,6 @@ class CustomerDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_detail_params
-      params.require(:customer_detail).permit(:testing_cost,:repair_cost,:software_testing_cost,:compalint_type,:status,:estimated_cost,:balance_cost,:advanced_paid,:employee_id,:bill_no, :mobile_modal_name,:customer_name, :date, :address, :customer_no, :telephone_no, :mobile_no, :model_name, :purchase_date, :serial_no, :full_warranty, :labor_only, :parts_only, :out_of_warranty, :repair_received, :repair_completed, :good_delivered, :return_by_date, :defect_description, :b2b_svc, :accessory, :remark, :repair_description, :condition_code, :symptom_code, :defect_code, :repair_code)
+      params.require(:customer_detail).permit(:testing_cost,:repair_cost,:software_testing_cost,:compalint_type,:status,:estimated_cost,:balance_cost,:advanced_paid,:employee_id,:bill_no, :mobile_modal_name,:customer_name, :date, :address, :customer_no, :telephone_no, :mobile_no, :model_name, :purchase_date, :serial_no, :full_warranty, :labor_only, :parts_only, :out_of_warranty, :repair_received, :repair_completed, :good_delivered, :return_by_date, :defect_description, :imei_1,:imei_2, :accessory, :remark, :repair_description, :condition_code, :repair_code)
     end
 end

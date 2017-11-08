@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   
   resources :customer_details do
     collection do 
-      get :existing_customer, :search_customer
+      get :existing_customer, :search_customer, :status, :update_search, :search_customer_status, :customer_status
     end
     
     member do
-       get :customer_receipt, :show_engineer_copy, :inventory_item, :inventory
+       get :customer_receipt, :show_engineer_copy, :inventory_item, :inventory, :without_adding_items, :invoice, :edit_status
+      patch :update_status
      end
      resources :inventory_items
   end

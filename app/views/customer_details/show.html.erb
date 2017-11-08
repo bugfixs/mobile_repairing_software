@@ -6,12 +6,6 @@
                     <div class="panel-body">
 
 
-<%= link_to 'Back', customer_details_path%><b> | </b>
-<%= link_to 'Download Customer PDF ', customer_detail_path(@customer_detail, format: 'pdf'),target: '_blank' %> <b> | </b>
-
-<%= link_to 'Download Engineer PDF', engineer_detail_path(@customer_detail,format: 'pdf'),target: '_blank' %>
-
-
                         <div class="row form-group">
                             <div class="col-md-4">
                                 <label for="text_input" class="label_height"><b>Customer Name:</b></label>&nbsp;
@@ -115,11 +109,6 @@
                                     <%= @customer_detail.defect_description%>
                             </div>
 
-                            <div class="col-md-4">
-                                <label for="text_input" class="label_height"><b>B2b svc:</b></label>&nbsp;
-                                   
-                                    <%= @customer_detail.b2b_svc%>
-                            </div>
 
                             <div class="col-md-4">
                                 <label for="text_input" class="label_height"><b>Accessory:</label>&nbsp;
@@ -176,15 +165,15 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label for="text_input" class="label_height"><b>Symptom Code:</b></label>&nbsp;
+                                <label for="text_input" class="label_height"><b>IMEI 1:</b></label>&nbsp;
                                    
-                                    <%= @customer_detail.symptom_code %>
+                                    <%= @customer_detail.imei_1 %>
                             </div>
 
                             <div class="col-md-4">
-                                <label for="text_input" class="label_height"><b>Defect Code:</b></label>&nbsp;
+                                <label for="text_input" class="label_height"><b>IMEI 2:</b></label>&nbsp;
                                    
-                                    <%= @customer_detail.defect_code%>
+                                    <%= @customer_detail.imei_2%>
                             </div>
 
                             <div class="col-md-4">
@@ -198,6 +187,12 @@
                                    
                                     <%= @customer_detail.status%>
                             </div>
+                        </div>
+
+                        <div class="col-sm-12 col-sm-offset-3 input_success">
+                          <%= link_to 'Download Customer PDF ', customer_detail_path(@customer_detail, format: 'pdf'),target: '_blank', class: "btn btn-warning btn-md"%> <b> | </b>
+                          <%= link_to 'Download Engineer PDF', engineer_detail_path(@customer_detail,format: 'pdf'),target: '_blank', class: "btn btn-warning btn-md" %>
+                        </div>
 
 
   

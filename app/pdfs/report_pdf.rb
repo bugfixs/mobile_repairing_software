@@ -39,14 +39,14 @@ class ReportPdf < Prawn::Document
 
 
   def customer_detail
-      data = [["Customer Name", @engineer_detail.customer_name, "Request Date",@engineer_detail.date, "Address", @engineer_detail.address],
-                 ["Customer No", @engineer_detail.customer_no ,"Telephone No", @engineer_detail.telephone_no,"Mobile No", @engineer_detail.mobile_no],
-                 ["Model Name", @engineer_detail.mobile_modal_name, "Purchase Date", @engineer_detail.purchase_date, "Serial No", @engineer_detail.serial_no],
-                 ["Full warranty", @engineer_detail.full_warranty, "Labor only", @engineer_detail.labor_only, "Parts only", @engineer_detail.parts_only],
-                 ["Out of warranty", @engineer_detail.out_of_warranty, "Repair Received", @engineer_detail.repair_received, "Repair Completed", @engineer_detail.repair_completed],
-                 ["Accessory", @engineer_detail.accessory, "Remark", @engineer_detail.employee.first_name+ " - "+@engineer_detail.employee.last_name, "Repair Completed", @engineer_detail.repair_completed],
-                 ["Repair Description", @engineer_detail.repair_description, "Condition Code", @engineer_detail.condition_code, "Symptom Code", @engineer_detail.symptom_code],
-                 ["Defect Code", @engineer_detail.defect_code, "Repair Code", @engineer_detail.repair_code]]
+      data = [["Customer Name:", @engineer_detail.customer_name, "Request Date:",@engineer_detail.date, "Address:", @engineer_detail.address],
+                 ["Customer No:", @engineer_detail.customer_no ,"Telephone No:", @engineer_detail.telephone_no,"Mobile No", @engineer_detail.mobile_no],
+                 ["Model Name:", @engineer_detail.mobile_modal_name, "Purchase Date:", @engineer_detail.purchase_date, "Serial No:", @engineer_detail.serial_no],
+                 ["Full warranty:", @engineer_detail.full_warranty, "Labor only:", @engineer_detail.labor_only, "Parts only:", @engineer_detail.parts_only],
+                 ["Out of warranty:", @engineer_detail.out_of_warranty, "Repair Received:", @engineer_detail.repair_received, "Repair Completed:", @engineer_detail.repair_completed],
+                 ["Accessory:", @engineer_detail.accessory, "Engineer Name:", @engineer_detail.employee.first_name+ " - "+@engineer_detail.employee.last_name, "Repair Completed:", @engineer_detail.repair_completed],
+                 ["Repair Description:", @engineer_detail.repair_description, "Condition Code:", @engineer_detail.condition_code],
+                 [ "Repair Code:", @engineer_detail.repair_code]]
   end
 
     def invoice
