@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   resources :customer_details do
     collection do 
       get :existing_customer, :search_customer, :status, :update_search, :search_customer_status, :customer_status
+      get :existing_customer, :search_customer, :work_done, :pending_status, :good_delivered, :show_work_done
+      get :show_pending_status, :show_good_delivered, :report, :show_transactions_list
+      post :transactions_list
     end
-    
     member do
        get :customer_receipt, :show_engineer_copy, :inventory_item, :inventory, :without_adding_items, :invoice, :edit_status
       patch :update_status
-     end
+    end
      resources :inventory_items
   end
 
