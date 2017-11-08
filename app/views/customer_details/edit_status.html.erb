@@ -1,0 +1,70 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Fill Up Customer Complaints
+        </div>
+            <%= form_for @customer_detail, url:{controller: 'customer_details',action:'update_status'}, method: :patch do |f| %>
+                    <div class="panel-body">
+                        <div class="row form-group">
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Bill No</label>
+                                   <%= f.text_field :bill_no, placeholder: "Bill Number", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Customer Name</label>
+                                    <span style="color:red">*</span>
+                                    <%= f.text_field :customer_name, placeholder: "Name", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Address</label>
+                                        <%= f.text_field :address, placeholder: "Customer Address", class: "form-control"%>
+                           </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Mobile No</label>
+                                     <span style="color:red">*</span>
+                                        <%= f.text_field :mobile_no, placeholder: "Mobile No", class: "form-control"%>
+                           </div>
+         
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Model Name</label>
+                                    <%= f.text_field :mobile_modal_name, placeholder: "Model Name", class: "form-control" %>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="text_input" class="label_height">Serial No</label>
+                                     <span style="color:red">*</span>
+                                        <%= f.text_field :serial_no, placeholder: "Serial No", class: "form-control"%>
+                           </div>
+                
+                           <div class="col-md-2">
+                                <label for="text_input" class="label_height">Status</label>
+                                    
+                                        <%=f.select :status,["Pending","Work-Done","Good Delivered"],{prompt: 'Select Status'},class: "form-control" %>
+                           </div>
+
+                                                      
+                        </div>
+
+
+
+                        <div class="col-sm-4 col-sm-offset-5 input_success">
+                                         <%= f.submit "Update Status", class: 'btn btn-success btn-sm'%>
+                        </div>
+                 
+</div>
+ <% end %>
+
+
+ <!-- <script type='text/javascript'>
+ $(document).on("keyup", "#estimated_cost, #advanced_paid", function() {
+  var estimated_cost = $("#estimated_cost").val();
+  var advanced_paid = $("#advanced_paid").val();
+  $("#balance_cost").val($('#estimated_cost').val() - $('#advanced_paid').val());
+});
+</script> -->
+
+

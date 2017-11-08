@@ -1,0 +1,116 @@
+<div class="panel-body">
+<div class="box-content" style="overflow-x: auto;width: 100%;height: 450px">
+  <table class="table table-bordered responsive">
+   <thead>
+    <tr>
+      <th><b>Spare Charges</b></th>
+      <th><b>Taxable Value</b></th>
+      <th><b>SGST (9%)</b></th>
+      <th><b>CGST (9%)</b></th>
+      <th><b>Total GST (18%)</b></th>
+      <th><b>Grand Total</b></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%total_amount=0%>
+  <%bal_amount=0%>
+  
+    <% @customer_detail.inventory_items.all.each_with_index do |s,i| %>
+
+      <tr>
+     
+    <% end %>
+
+      <%if @customer_detail.repair_cost == 'Yes'%>
+        <tr>
+         
+          <td><b>Repairing Charges</b></td>
+          <td><%= @repair = GeneralSetting.last.repair_cost.to_f%></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)+((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.repair_cost.to_f)/100)%><center></td>
+          <td><%= @repair_gst = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.repair_cost.to_f))/100) + GeneralSetting.last.repair_cost.to_f%></td>
+        </tr>
+      <%end%>
+
+      <%if @customer_detail.testing_cost == 'Yes'%>
+        <tr>
+          <td><b>Testing Charges</b></td>
+           <td><%=@testing =  GeneralSetting.last.testing_cost.to_f%></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100) + ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.testing_cost.to_f)/100)%><center></td>
+          <td><%=@testing_gst = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.testing_cost.to_f))/100) + GeneralSetting.last.testing_cost.to_f %></td>
+        </tr>
+      <%end%>
+
+      <%if @customer_detail.software_testing_cost == 'Yes'%>
+        <tr>
+          <td><b>Software Updation Charges </b></td>
+          <td><%= @software = GeneralSetting.last.software_testing_cost.to_f%></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)%><center></td>
+           <td><center><%= ((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)+((GeneralSetting.last.sgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f)/100)%><center></td>
+          <td><%= @software = (((GeneralSetting.last.sgst.to_f + GeneralSetting.last.cgst.to_f)*(GeneralSetting.last.software_testing_cost.to_f))/100) + GeneralSetting.last.software_testing_cost.to_f%></td>
+        </tr>
+      <%end%>
+
+    </tbody>
+  </table>
+
+      <div class="col-md-11" align= "center">
+        <%= link_to 'Save & Download Invoice', invoice_customer_detail_path(@customer_detail,format: 'pdf'),target: '_blank',class: "btn btn-warning btn-md" %>
+      </div>
+
+  <div class="col-md-11" align= "right">
+      <div class="pull-right">
+        <b>Estimated Cost: </b><%= text_field_tag :amount, @total_estimate_cost =total_amount.to_f + @repair_gst.to_f + @testing_gst.to_f + @software.to_f%>
+      </div>
+  </div>
+<br><br><br><br><br>
+
+    <div class="col-md-11" align= "right">
+      <div class="pull-right">
+        <b>Advanced Paid: </b><%= text_field_tag :amount,@customer_detail.advanced_paid.to_f %>
+      </div>
+    </div>
+
+<br><br><br>
+
+    <div class="col-md-11" align= "right">
+      <div class="pull-right"></div>
+        <b>Balanced Payment: </b><%=text_field_tag :amount,@total_estimate_cost - @customer_detail.advanced_paid.to_f%></div>
+    </div>
+
+
+  
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div id="select_div"></div> 
+
+
+
+ <script type="text/javascript">
+  $("#inventory_item_inventory_id").on("change", function() {
+    var inventory_id;
+    Item = $(this).val();
+    $.ajax({
+      url: "/inventories/load_item_data",
+      type: "GET",
+      data: {inventory_id: Item },
+      dataType: "json"
+     }).done(function (data) {
+     console.log(data);
+      $("#description").val(data[0]);
+      $("#branch").val(data[1]);
+      $("#map").val(data[2]);
+    });
+  });
+</script>
+
+

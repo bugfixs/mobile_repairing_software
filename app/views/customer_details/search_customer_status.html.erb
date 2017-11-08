@@ -1,0 +1,37 @@
+<div class="col-md-12 section-top-15 wow fadeInDown" data-wow-duration="1s"
+                             data-wow-delay="0.2s">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Search Customers
+        </div>
+
+<div class="row">
+<div class="col-sm-6 col-sm-offset-4">
+    <div class="form-group">
+   <%= form_for :customer_detail, method: :get,remote:true,id: 'search' do |f|%>
+       <b>Search User:</b>
+       <br>
+          <%= text_field_tag :search,"",placeholder:'Search Customer',class:"form-control",style: "width: 300px"%>
+        <% end %>
+        </div>
+</div>
+  </div>
+</div>
+
+<div id ="status">
+
+</div>
+ <script type="text/javascript">
+  $("#search").on("change", function() {
+    var search;
+    Item = $(this).val();
+    $.ajax({
+      url: "/customer_details/customer_status",
+      type: "GET",
+      data: {search: Item },
+      dataType: "script"
+     }).done(function (data) {
+     $('#search').html(data);
+    });
+  });
+</script>
+
